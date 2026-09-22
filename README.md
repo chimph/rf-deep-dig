@@ -8,6 +8,8 @@ Walk your Rare Friend through a resonance minefield, collect simulated RF, and d
 
 Builder: **chimph** · Contact: **[@intocryptoast on X](https://x.com/intocryptoast)**.
 
+![Deep Dig gameplay with a Rare Friend, an orb, flagged tiles and simulated RF rewards](games/deep-dig/gameplay.png)
+
 ## Wallet-connected preview
 
 Requires Node.js 22+, npm and a browser wallet holding a Rare Friends Generations NFT (generation 1 or higher) on Robinhood mainnet (chain 4663).
