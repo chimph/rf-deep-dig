@@ -68,6 +68,8 @@ If the game winds down, new entries would stop first. Existing expeditions would
 
 **This is a proposed live operating model, not an implemented or verified real-fund safeguard.** The submission uses only simulated RF and a session-local pool; no real seed has been deposited, no owner withdrawal feature is implemented, and no fixed Rare Friends revenue share has been agreed. Authoritative shared accounting, persistence, withdrawal enforcement and settlement require later implementation, testing and Rare Friends production review before real-value play.
 
+The [live-release plan](LIVE-RELEASE.md) describes the proposed authoritative board service, randomness and board secrecy, durable saves, shared accounting, and decisions to agree with Rare Friends. It is a requirements document, not an implemented service.
+
 ## Integration decision and capability limits
 
 Reviewed upstream release, runtime guide and submission requirements on **2026-09-22** before choosing this approach:

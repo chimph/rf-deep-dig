@@ -29,7 +29,7 @@ Run `npm run dev:deep-dig` and open http://localhost:4173. It uses two clearly l
 
 Move with arrows/WASD or touch. Press F then a direction to flag a neighbour; mobile has a centre flag button. Right-click or long-press flags a covered tile. Pay once per expedition, collect finds and orbs, and extract at any time. Reveal the ordinary ground and recover an orb to descend. A mine ends the run and loses its unbanked haul.
 
-See [full controls, costs and rewards](games/deep-dig/README.md), [submission details](games/deep-dig/SUBMISSION.md) and [verification](games/deep-dig/SUBMISSION-CHECKS.md).
+See [full controls, costs and rewards](games/deep-dig/README.md), [submission details](games/deep-dig/SUBMISSION.md), [live-release requirements](games/deep-dig/LIVE-RELEASE.md) and [verification](games/deep-dig/SUBMISSION-CHECKS.md).
 
 ## Checks
 
