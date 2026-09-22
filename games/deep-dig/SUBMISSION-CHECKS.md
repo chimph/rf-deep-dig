@@ -41,16 +41,16 @@ The public release uses a fresh history with the approved `chimph` alias and Git
 
 Publication of this simulated preview is separate from a Vibeathon submission and from any future approved real-RF release. No live settlement, shared production ledger or owner-withdrawal enforcement is implemented.
 
-## Previous repository hosted preview verification
+## Hosted preview verification
 
-Public URL: https://chimph.github.io/deep-dig/ (HTTPS enforced).
+Public URL: https://chimph.github.io/rf-deep-dig/ (HTTPS enforced).
 
-[Full source CI](https://github.com/chimph/deep-dig/actions/runs/35667675903) and the [manual preview deployment](https://github.com/chimph/deep-dig/actions/runs/35667696022) passed for source commit `75c60879cfb984cc3822f8e2d451b0a81c65dab6`.
+[Full source CI](https://github.com/chimph/rf-deep-dig/actions/runs/35673536179) and the [manual preview deployment](https://github.com/chimph/rf-deep-dig/actions/runs/35673831149) passed for source commit `784246518a6af96ab271247f71ff7f18b19ab9ac`.
 
-All nine hosted static assets matched the verified local build byte-for-byte. On desktop (1100px) and portrait touch (390px), the actual unmodified hosted page showed the missing-wallet gate without mounting gameplay. Separate isolated browser contexts using internal wallet/RPC fixtures verified artwork, fonts, fresh eligibility reads, sandbox restrictions, entry, extraction and cancellation on network changes against the hosted bundle, with no signing requests. Screenshots were reviewed. These mocked gameplay checks do not claim to verify the builder's real wallet.
+All nine hosted static assets matched the CI-tested Pages artifact byte-for-byte, including the orb tab icon. On desktop (1100px) and portrait touch (390px), the actual unmodified hosted page showed the missing-wallet gate without mounting gameplay. Separate isolated browser contexts using internal wallet/RPC fixtures verified artwork, fonts, fresh eligibility reads, sandbox restrictions, default sound on, saved mute after refresh, entry, extraction and cancellation on network changes against the hosted bundle, with no signing requests. These mocked gameplay checks do not claim to verify the builder's real wallet.
 
 The Pages workflow is manual-only and publishes only the simulated wallet build. Pushes and pull requests run checks without deploying. Subsequent documentation-only changes do not change the deployed game assets.
 
-## RF Deep Dig repository transition
+## Repository transition
 
-The new repository starts from the previously verified source at `2d5466a118cb93bf1f5c6160424cb98e9a2a25ec`, with licensing, contact and repository documentation changes. Historical hosted results above refer to the old repository and URL; they do not establish a deployment for this new repository. No gameplay, build scripts or browser-save keys changed in this transition.
+RF Deep Dig starts from previously verified source `2d5466a118cb93bf1f5c6160424cb98e9a2a25ec`, with licensing, contact and repository documentation changes. The original source's Apache permissions remain intact as explained in the root LICENSE. No gameplay, build scripts or browser-save keys changed in this transition. Use the new preview URL above; the previous repository has been made private.

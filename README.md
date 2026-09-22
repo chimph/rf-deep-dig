@@ -4,11 +4,9 @@ Walk your Rare Friend through a resonance minefield, collect simulated RF, and d
 
 **All RF is simulated. No real purchases, payouts, signatures or transactions.**
 
-**[Play the public simulated preview](https://chimph.github.io/deep-dig/)** · [Source](https://github.com/chimph/rf-deep-dig)
+**[Play the public simulated preview](https://chimph.github.io/rf-deep-dig/)** · [Source](https://github.com/chimph/rf-deep-dig)
 
 Builder: **chimph** · Contact: **[@intocryptoast on X](https://x.com/intocryptoast)**.
-
-The linked preview is the existing deployment from the previous repository. This new repository does not automatically move that deployment; the old URL may stop working if its repository becomes private.
 
 ## Licensing
 
