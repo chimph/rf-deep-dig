@@ -1,0 +1,16 @@
+/* Use the offline game's exact frame, toolbar and menu theme.
+ * The host owns official identity controls; game content remains sandboxed.
+ */
+@import './style.css';
+/* Override the stock runner's later page background, outside the game frame. */
+html, body { background: #0b1117 !important; color: #efeee5; }
+:root { --rf-game-max-width: 960px; --rf-game-aspect-ratio: 3 / 2; }
+.rf-runtime-status { background: #101b22; color: #efeee5; }
+/* The stock fixed-table balance is unrelated to Deep Dig. Never show it as our balance. */
+.rf-frame-wallet-balance { display: none; }
+.rf-frame-menu-body:has(.rf-frame-wallet-balance)::after { display: block; content: 'Deep Dig uses its own simulated pool. Your game balance is shown in the game header. Progress resets when this session ends; no RF is sent.'; margin-top: 12px; }
+@media (max-width: 600px) and (orientation: portrait) {
+  #root { width: 100%; }
+  .rf-game-frame { aspect-ratio: auto; height: min(640px, 100dvh); }
+  .rf-frame-toolbar { bottom: 6px; } /* Pinned inside the SDK viewport. */
+}

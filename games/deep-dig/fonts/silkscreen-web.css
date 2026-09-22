@@ -1,0 +1,11 @@
+/* Same bundled Silkscreen font, converted losslessly from Silkscreen-Regular.ttf.
+ * WOFF2 is served as an SDK asset; the offline runner retains its embedded font.
+ * Silkscreen by Jason Kottke, SIL Open Font License; see Silkscreen-OFL.txt.
+ */
+@font-face {
+ font-family: Silkscreen;
+ font-style: normal;
+ font-weight: 400;
+ font-display: swap;
+ src: url('./Silkscreen-Regular.woff2') format('woff2');
+}

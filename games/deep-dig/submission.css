@@ -1,0 +1,11 @@
+/* The child has the same game styling; only the host owns the outer frame. */
+html, body, #root { width: 100% !important; height: 100% !important; min-height: 0; margin: 0; }
+body { display: block; }
+.submission-surface.rf-game-frame { width: 100%; height: 100%; aspect-ratio: auto !important; border: 0; box-shadow: none; overflow: hidden; }
+.submission-content { width: 100%; height: 100%; }
+@media (max-width: 600px) and (orientation: portrait) {
+  .submission-content { overflow-y: auto; padding-bottom: 44px; }
+  .submission-content .dig { height: calc(125vw + 620px); }
+  .submission-content .rf-frame-scrim { position: fixed; bottom: 40px; }
+  .submission-content .rf-frame-menu { max-height: calc(100dvh - 88px); }
+}

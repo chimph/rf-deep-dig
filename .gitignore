@@ -1,0 +1,28 @@
+node_modules/
+dist/
+*.tgz
+contracts/out/
+contracts/cache/
+contracts/deployments/
+
+.friendsdk/
+
+# Local Deep Dig generated build and verification outputs
+games/deep-dig/.local/
+work/
+
+# Private local project notes; excluded from submission source
+/PROJECT_CONTEXT.md
+
+# Local analysis is not part of the public game source
+/games/deep-dig/*-results.json
+/games/deep-dig/*-summary.csv
+/games/deep-dig/ECONOMY-*.md
+/games/deep-dig/POOL-LOAD-CHECK.md
+/games/deep-dig/GUARANTEED-RUN-CHECK.md
+/games/deep-dig/BOT-PLAYTEST.md
+/games/deep-dig/CHECKS.md
+/scripts/deep-dig-econom*.mjs
+/scripts/deep-dig-*pool*.mjs
+/tests/deep-dig-pool-model.test.mjs
+.env*

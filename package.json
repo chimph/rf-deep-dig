@@ -1,0 +1,147 @@
+{
+  "name": "@rarefriends/friendsdk",
+  "version": "0.1.2",
+  "description": "Deep Dig simulated Rare Friends game with its extended FriendSDK runtime",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./world": {
+      "types": "./dist/friend-world.d.ts",
+      "import": "./dist/friend-world.js"
+    },
+    "./navigation": {
+      "types": "./dist/friend-navigation.d.ts",
+      "import": "./dist/friend-navigation.js"
+    },
+    "./movement": {
+      "types": "./dist/movement.d.ts",
+      "import": "./dist/movement.js"
+    },
+    "./assets": {
+      "types": "./dist/assets.d.ts",
+      "import": "./dist/assets.js"
+    },
+    "./sprites": {
+      "types": "./dist/friend-sprites.d.ts",
+      "import": "./dist/friend-sprites.js"
+    },
+    "./identity": {
+      "types": "./dist/identity.d.ts",
+      "import": "./dist/identity.js"
+    },
+    "./sounds": {
+      "types": "./dist/friend-sounds.d.ts",
+      "import": "./dist/friend-sounds.js"
+    },
+    "./items": {
+      "types": "./dist/items.d.ts",
+      "import": "./dist/items.js"
+    },
+    "./ui": {
+      "types": "./dist/experience-ui.d.ts",
+      "import": "./dist/experience-ui.js"
+    },
+    "./reveal": {
+      "types": "./dist/reward-reveal.d.ts",
+      "import": "./dist/reward-reveal.js"
+    },
+    "./game": {
+      "types": "./dist/game.d.ts",
+      "import": "./dist/game.js"
+    },
+    "./host": {
+      "types": "./dist/chain.d.ts",
+      "import": "./dist/chain.js"
+    },
+    "./ui.css": "./assets/experience-ui.css",
+    "./reveal.css": "./assets/reward-reveal.css",
+    "./worlds.json": "./src/friend-worlds.json",
+    "./frame": {
+      "types": "./dist/game-frame.d.ts",
+      "import": "./dist/game-frame.js"
+    },
+    "./frame.css": "./assets/game-frame.css",
+    "./bridge": {
+      "types": "./dist/frame-bridge.d.ts",
+      "import": "./dist/frame-bridge.js"
+    },
+    "./runtime": {
+      "types": "./dist/runtime.d.ts",
+      "import": "./dist/runtime.js"
+    },
+    "./wallet": {
+      "types": "./dist/wallet.d.ts",
+      "import": "./dist/wallet.js"
+    },
+    "./owned": {
+      "types": "./dist/owned-friends.d.ts",
+      "import": "./dist/owned-friends.js"
+    },
+    "./world-view": {
+      "types": "./dist/world-view.d.ts",
+      "import": "./dist/world-view.js"
+    },
+    "./runtime.css": "./assets/runtime.css",
+    "./world-view.css": "./assets/world-view.css",
+    "./build": {
+      "types": "./scripts/dev-game.d.mts",
+      "import": "./scripts/dev-game.mjs"
+    },
+    "./serve": {
+      "types": "./scripts/dev-game.d.mts",
+      "import": "./scripts/dev-game.mjs"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p games/deep-dig/tsconfig.json",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "check:games": "node scripts/check-games.mjs games/deep-dig",
+    "dev": "npm run dev:deep-dig",
+    "dev:deep-dig": "npm run build && node scripts/deep-dig.mjs",
+    "dev:deep-dig:lan": "npm run dev:deep-dig -- --host 0.0.0.0 --port 4174",
+    "build:deep-dig": "npm run build && node scripts/deep-dig.mjs --build",
+    "typecheck:deep-dig": "tsc -p games/deep-dig/tsconfig.json",
+    "test:deep-dig": "node --test tests/deep-dig.test.mjs tests/deep-dig-board.test.mjs tests/deep-dig-sounds.test.mjs",
+    "check:deep-dig:browser": "node scripts/check-deep-dig-browser.mjs",
+    "check:deep-dig:idle": "node scripts/check-deep-dig-idle-browser.mjs",
+    "dev:deep-dig:submission": "npm run build && node scripts/deep-dig-submission.mjs",
+    "build:deep-dig:submission": "npm run build && node scripts/deep-dig-submission.mjs --build",
+    "check:deep-dig:submission": "node scripts/check-deep-dig-submission.mjs",
+    "check:deep-dig:picker": "node scripts/check-deep-dig-picker.mjs",
+    "check:deep-dig:styles": "node scripts/check-deep-dig-style-parity.mjs"
+  },
+  "dependencies": {
+    "viem": "2.56.3",
+    "esbuild": "0.28.2"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "playwright": "^1.63.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.12",
+    "@types/react-dom": "19.1.9",
+    "playwright": "1.63.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "typescript": "6.0.3"
+  },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    }
+  },
+  "private": true
+}

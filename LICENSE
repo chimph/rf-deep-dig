@@ -1,0 +1,42 @@
+RF Deep Dig licensing
+=====================
+
+This repository contains material under different terms. It is not licensed
+as a whole under Apache-2.0.
+
+1. Existing releases and third-party material
+
+The source baseline is chimph/deep-dig commit
+2d5466a118cb93bf1f5c6160424cb98e9a2a25ec, previously published with an
+Apache-2.0 repository licence. All Apache-2.0 permissions already granted
+for that material remain available, including commercial reuse subject to
+that licence. Moving it to this repository does not revoke or narrow those
+permissions, including for unchanged copies included here.
+
+FriendSDK source, including the runtime in src/, retains Apache-2.0.
+See LICENSES/Apache-2.0.txt. Third-party code, artwork and fonts retain their
+own terms regardless of location. See NOTICE.md and
+games/deep-dig/fonts/Silkscreen-OFL.txt.
+
+2. New original Deep Dig material
+
+Only new original Deep Dig material first introduced after the baseline,
+and for which chimph holds the relevant rights, is covered by
+LICENSES/Deep-Dig-Evaluation.txt unless explicitly licensed otherwise.
+This includes new game code, original game assets, game-specific tooling,
+tests and documentation. It excludes the baseline material, FriendSDK
+runtime code, third-party material and anything separately licensed.
+For mixed files, the evaluation terms apply only to the new original
+portions, not to existing Apache-2.0 portions.
+
+The evaluation terms allow inspection, private testing and judging, but
+require separate permission for commercial reuse or public hosting of
+covered new material. They are source-available terms, not an open-source
+licence. Existing Apache-2.0 rights remain unaffected.
+
+3. Contact and ownership
+
+Builder: chimph. Contact: https://x.com/intocryptoast
+No ownership transfer, exclusivity or official Rare Friends endorsement is
+created by publishing this repository or making it available for evaluation.
+No rights in third-party names or trademarks are granted by these terms.

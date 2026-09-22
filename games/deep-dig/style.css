@@ -1,0 +1,665 @@
+*{box-sizing:border-box}html,body{margin:0;background:#0b1117;color:#efeee5;font-family:Arial,Helvetica,sans-serif}body{min-height:100dvh;display:grid;place-items:center}#root{width:min(960px,100vw,150dvh);margin:auto}.rf-game-frame{border:1px solid #354448;background:#101b22;color:#efeee5;font-family:Arial,Helvetica,sans-serif;border-radius:0;box-shadow:4px 4px #080b0d}.dig{position:relative;width:100%;height:100%;container-type:inline-size;background:#101b22;overflow:hidden;color:#efeee5}.rf-game-frame button,.rf-frame-scrim button{border:1px solid #586467;border-radius:0;background:#242d31;color:#efeee5;font:inherit;min-height:34px}.rf-game-frame button:hover:not(:disabled),.rf-frame-scrim button:hover:not(:disabled){background:#354045}.rf-game-frame button:focus-visible,.rf-frame-scrim button:focus-visible{outline:2px solid #cff796;outline-offset:2px}.rf-game-frame button:disabled{opacity:.45}.eyebrow{font:10px/1.4 monospace;letter-spacing:1.1px;color:#9dadae}.dig-top{position:absolute;left:3%;right:3%;top:4%;display:flex;align-items:center;gap:16px}.dig-top h1{margin:2px 0 0;font-size:34px;line-height:1;letter-spacing:-1px}.dig-top h1{display:flex;align-items:center;gap:.18em}.identity-art{padding-left:9px;border-left:1px solid #40504c}.friend-avatar{width:32px;height:32px;display:block;image-rendering:pixelated;pointer-events:none}.mode-label{margin-left:auto;font:9px/1.5 monospace;letter-spacing:1px;color:#c9f18c;text-align:right}.mode-label small{display:block;font:8px monospace;color:#738f87;letter-spacing:.5px}.rf-game-frame .settings-button{padding:2px 8px;font-size:21px}.board-tools{position:absolute;top:15.5%;left:3%;width:59%;display:flex;align-items:center;gap:12px;height:5%;font:10px monospace}.dig-modes{display:flex;gap:4px;height:100%}.rf-game-frame .dig-modes button{min-height:0;padding:2px 13px;font:11px monospace}.dig-modes button[aria-pressed=true]{background:#c9f18c;color:#171d18;border-color:#c9f18c}.dig-modes button[aria-pressed=true]:hover{background:#dcffae}.board-counter{color:#bec9c4;letter-spacing:.6px}.rf-game-frame .help-button{padding:0;min-height:25px;background:transparent;border:0;font:10px monospace;margin-left:auto;color:#b9c5c2}.mine-board{position:absolute;left:3%;top:22%;width:59%;aspect-ratio:10/8;display:grid;grid-template-columns:repeat(10,minmax(0,1fr));grid-template-rows:repeat(8,minmax(0,1fr));gap:4px;padding:6px;border:1px solid #3a514d;border-radius:0;background:#0b141b;touch-action:manipulation}.rf-game-frame .tile{min-width:0;min-height:0;border-radius:3px;padding:0;position:relative;display:flex;justify-content:center;align-items:center;overflow:hidden;touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;line-height:1}.rf-game-frame .tile.covered{background:linear-gradient(145deg,#344a4e,#273d42);border:1px solid #4b6363;box-shadow:inset 1px 1px #82978933,inset -2px -2px #12282c}.rf-game-frame .tile.covered:hover:not(:disabled){background:#405e5e;border-color:#a7c7ac}.rf-game-frame .tile.revealed{background:#17252d;border:1px solid #263a40;box-shadow:none}.rf-game-frame .tile:focus-visible{outline:2px solid #d8ffad;outline-offset:-3px;z-index:1}.rf-game-frame .tile:disabled{opacity:1;cursor:default}.covered-mark{color:#4b6467;font-size:24px}.clue{font:bold clamp(12px,2.7cqw,27px)/1 monospace}.clue-1{color:#83c4f3}.clue-2{color:#9fdb99}.clue-3{color:#efb081}.clue-4{color:#c1a6f5}.clue-5,.clue-6,.clue-7,.clue-8{color:#f58d9d}.flag-mark{font-size:clamp(12px,2.8cqw,28px);color:#e6c37f}.flag-mode .tile.covered:not(.flagged):hover{border-color:#e6c37f}.friend-token{position:absolute;bottom:3%;right:1%;width:32px;max-width:67%;aspect-ratio:1;pointer-events:none}.friend-token .friend-avatar{width:100%;height:100%}.friend-tile .clue{position:absolute;top:9%;left:10%;font-size:clamp(10px,1.9cqw,19px)}.treasure{position:absolute;left:7%;bottom:5%;color:#c9f18c;font-size:clamp(9px,1.7cqw,17px);line-height:1}.treasure.satchel{color:#e5b576}.rf-game-frame .tile.mine-hit{background:#853f38;border-color:#dc8270}.mine-mark{font-size:28px;color:#ffb5a2}.camp-card{position:absolute;inset:13% 6%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;pointer-events:none;background:#101c25ed;border:1px solid #98a6a0;border-radius:0;box-shadow:4px 4px #080c0e;padding:10px}.camp-card h2{font-size:31px;letter-spacing:-1px;line-height:1.15;margin:15px 0 8px;color:#e7edda}.camp-card p{font-size:13px;line-height:1.6;color:#9ab2aa;margin:4px 0 18px}.camp-hint{font:9px monospace;color:#c9f18c;letter-spacing:1px}.dig-panel{position:absolute;top:22%;right:3%;width:31%;height:64%;display:flex;flex-direction:column;gap:13px}.depth-title{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #354845;padding-bottom:10px}.depth-title b{font:10px monospace;color:#b7c9b4}.stat strong{display:block;font-size:32px;font-weight:500;line-height:1.15;letter-spacing:-.7px}.stat strong small{font:12px monospace;color:#8ca99b;letter-spacing:0}.bag strong{color:#c9f18c}.bag p{font:11px/1.5 Arial;margin:6px 0 0;color:#9eb5aa}.progress{display:flex;justify-content:space-between;color:#b1c7b5;font:11px monospace;padding-top:3px}.pool{border-top:1px solid #334941;padding-top:10px}.pool .eyebrow{font-size:8px}.pool>div{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:#92aca1}.pool b{font:11px monospace;color:#e7e9de}.pool .amber{color:#e1b882}.expedition-actions{display:flex;gap:7px;margin-top:auto}.rf-game-frame .expedition-actions button{flex:1;min-width:0;min-height:47px;padding:6px 8px;text-align:left;font-size:13px;line-height:1.2;font-weight:bold}.expedition-actions button small{display:block;font:9px/1.3 monospace;margin-top:4px;font-weight:normal}.rf-game-frame .primary{background:#c9f18c;color:#171d18;border-color:#c9f18c}.rf-game-frame .primary:hover:not(:disabled){background:#ddffb2}.rf-game-frame .deeper{background:#2f2b43;border-color:#64547e;color:#d3bdef}.status{position:absolute;left:3%;right:3%;top:89%;height:4.6%;display:flex;align-items:center;border:1px solid #31483e;border-radius:0;background:#14242a;padding:3px 9px;font:11px/1.3 Arial;color:#c3d8bd;overflow:auto}.rf-frame-toolbar{left:3%;right:19%;bottom:1.3%;gap:5px;font:9px monospace}.rf-frame-toolbar>*{border:0;background:#20292d;color:#a3bcaa;padding:3px 5px}.rf-frame-toolbar button{min-height:23px;padding:3px 6px;background:#20292d;font:9px monospace}.rf-frame-mode{font-size:8px;color:#819e8c}.rf-game-frame .footer-help{position:absolute;right:3%;bottom:1.3%;min-height:23px;padding:3px 7px;font:9px monospace;background:transparent;border:0;color:#98aa96}.rf-frame-scrim{background:#061015c9;color:#dfeada;font:13px/1.6 Arial,sans-serif;backdrop-filter:none}.rf-frame-menu{background:#20272b;border:1px solid #8c9a96;border-radius:0;box-shadow:5px 5px #080c0e}.rf-frame-menu-heading,.rf-frame-menu-footer{border-color:#4b575a}.rf-frame-menu-heading h2{font-size:18px;letter-spacing:-.3px}.rf-frame-menu-heading button{background:transparent;border:0}.rf-frame-menu-body{padding:18px}.rf-frame-menu-body p{color:#c0cbc7}.rf-frame-menu-body strong,.rf-frame-menu-body b{color:#d9efc6}.rf-frame-scrim .rf-frame-primary{background:#c9f18c;color:#171d18;border-color:#c9f18c}.rf-frame-friends button[aria-pressed=true]{background:#314b40;border-color:#c9f18c}.rf-frame-friends small{color:#8ca7a0;font-size:11px}.rf-frame-menu table{width:100%;border-collapse:collapse;font:11px/1.6 monospace;margin:15px 0}.rf-frame-menu th,.rf-frame-menu td{text-align:left;padding:7px 2px;border-bottom:1px solid #31464a}.check{display:flex;align-items:center;gap:10px;margin:18px 0}.check input{width:20px;height:20px;accent-color:#c9f18c}.result-number{font-size:38px;color:#c9f18c;letter-spacing:-1px;line-height:1.4}.result-number small{font:10px monospace;letter-spacing:.4px}.result-board{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;max-width:240px;aspect-ratio:10/8;margin:0 auto 12px;padding:4px;border:1px solid #547260;background:#0a1518}.result-board span{display:flex;align-items:center;justify-content:center;background:#2b4245;font:10px monospace}.result-board .safe{background:#17282a;color:#a8dfb7}.result-board .bomb{color:#dea984}.result-board .hit{background:#ba5f4b;color:white}.menu-actions{display:flex;flex-wrap:wrap;gap:6px}.offline-note{font-size:12px}.rf-frame-wallet-balance{color:#c9f18c}
+@container(max-width:800px){.dig-top{top:3%;gap:9px}.dig-top h1{font-size:25px}.eyebrow{font-size:8px;letter-spacing:.5px}.mode-label{font-size:7px;letter-spacing:.5px}.mode-label small{font-size:6px}.friend-avatar{width:26px;height:26px}.identity-art{padding-left:5px}.rf-game-frame .settings-button{min-height:30px;font-size:18px}.board-tools{font-size:8px;gap:7px}.rf-game-frame .dig-modes button{font-size:9px;padding:1px 9px}.rf-game-frame .help-button{font-size:8px;min-height:20px}.board-counter{letter-spacing:0}.mine-board{gap:3px;padding:4px}.camp-card h2{font-size:23px;margin:8px 0 5px}.camp-card p{font-size:10px;margin:2px 0 10px}.camp-hint{font-size:7px}.dig-panel{gap:7px}.depth-title{padding-bottom:5px}.depth-title b{font-size:8px}.stat strong{font-size:24px}.stat strong small{font-size:9px}.bag p{font-size:9px;margin-top:3px}.progress{font-size:9px;padding-top:0}.pool{padding-top:6px}.pool .eyebrow{font-size:7px}.pool>div,.pool b{font-size:9px}.pool>div{margin-top:4px}.rf-game-frame .expedition-actions button{min-height:34px;font-size:11px;padding:4px 6px}.expedition-actions button small{font-size:7px;margin-top:2px}.status{font-size:9px;top:89%;height:5%}.rf-frame-toolbar button{min-height:18px;font-size:7px;padding:2px 4px}.rf-frame-mode{font-size:6px}.rf-game-frame .footer-help{min-height:18px;font-size:7px}.rf-frame-toolbar,.rf-game-frame .footer-help{bottom:1%}}
+@container(max-width:520px){.dig-top{top:3%;gap:6px}.dig-top .eyebrow{display:none}.dig-top h1{font-size:20px}.identity-art{display:none}.mode-label{font-size:6px;letter-spacing:0}.mode-label small{font-size:5px}.rf-game-frame .settings-button{min-height:25px;font-size:16px;padding:1px 6px}.board-tools{top:15%;height:5.5%;font-size:6px;gap:5px}.rf-game-frame .dig-modes button{font-size:8px;padding:1px 6px}.rf-game-frame .help-button{font-size:0;min-height:16px}.help-button:after{content:'?';font-size:11px}.mine-board{gap:2px;padding:3px}.camp-card{inset:12% 3%;padding:6px}.camp-card .eyebrow{font-size:5px;letter-spacing:0}.camp-card h2{font-size:17px;letter-spacing:-.5px;margin:6px 0}.camp-card p{font-size:8px;line-height:1.3;margin:0 0 8px}.camp-hint{font-size:5px;letter-spacing:0}.dig-panel{gap:6px;height:65%}.depth-title{padding-bottom:0;border:0}.depth-title .eyebrow{font-size:7px}.depth-title b{display:none}.stat .eyebrow{font-size:6px;letter-spacing:0}.stat strong{font-size:19px;line-height:1}.stat strong small{font-size:8px}.bag p{display:none}.progress{font-size:7px;gap:3px}.pool{padding-top:4px}.pool .eyebrow,.pool .normal-pool{display:none}.pool>div,.pool b{font-size:8px;margin-top:0}.expedition-actions{flex-direction:column;gap:4px;margin-top:auto}.rf-game-frame .expedition-actions button{min-height:24px;font-size:10px;line-height:1;padding:3px 5px}.expedition-actions button small{font-size:6px;line-height:1;margin-top:2px}.status{font-size:7px;line-height:1.15;padding:2px 5px;top:89%;height:5%}.rf-frame-toolbar{left:2%;right:18%;gap:1px}.rf-frame-toolbar .rf-frame-mode{display:none}.rf-frame-toolbar button{font-size:6px;min-height:14px;padding:1px 3px;max-width:65%}.rf-game-frame .footer-help{min-height:14px;font-size:6px}.rf-frame-menu-heading h2{font-size:14px}.rf-frame-scrim{font-size:11px;padding:5px}.rf-frame-menu-heading{padding:5px 10px}.rf-frame-menu-body{padding:10px}.rf-frame-menu-footer{padding:6px}.rf-frame-friends{margin:8px 0;gap:6px}.rf-frame-friends button{min-height:65px;font-size:11px}.rf-frame-friends small{font-size:9px}.result-number{font-size:27px}.result-board{max-width:160px}.result-board span{font-size:7px}}
+@container(max-width:800px){.dig-panel{gap:6px}.bag p,.pool>.eyebrow{display:none}.stat strong{font-size:22px}.pool{padding-top:5px}}
+@container(max-width:520px){.dig-panel{gap:4px}.stat strong{font-size:19px}}
+@container(max-width:520px){.status{top:88.5%;height:4.2%}}
+.stat>.eyebrow{display:block}
+/* The three depths keep the same layout and shift the stone palette. */
+.dig[data-depth="2"]{background:radial-gradient(ellipse at 25% 40%,#263244,transparent 75%)}
+.dig[data-depth="3"]{background:radial-gradient(ellipse at 25% 40%,#3a243a,transparent 75%)}
+.reward-offer{display:flex;justify-content:space-between;gap:6px;font:10px/1.5 monospace;color:#93aca4;padding:6px 0;border-top:1px solid #354845}
+.reward-offer span{display:flex;flex-direction:column}.reward-offer b{color:#e6bd7e;font-weight:normal}
+.dust-mark{position:absolute;bottom:1px;left:4px;color:#b7a268;font-size:13px}
+.rf-game-frame .tile.treasure-tile{background:#3f3729;border-color:#bd9556}.treasure.mystery{color:#f0c376;font-size:21px;right:5px;bottom:5px}
+.result-board .jackpot{color:#f0c376;background:#473c29}
+.dig-panel{gap:9px}.bag p{font-size:10px}.pool{padding-top:6px}
+@container(max-width:800px){.dig-panel{gap:5px}.reward-offer{font-size:8px;padding:3px 0}.treasure.mystery{font-size:15px}.dust-mark{font-size:10px;left:2px}}
+@container(max-width:520px){.dig-panel{gap:3px}.reward-offer{font-size:6px;padding:2px 0}.pool .normal-pool{display:flex}.pool>div,.pool b{font-size:6px}.treasure.mystery{font-size:11px;right:2px;bottom:2px}.dust-mark{font-size:8px}.board-counter{font-size:5px}}
+@container(max-width:520px){
+ .dig-panel{gap:2px}.stat strong{font-size:17px}.pool>div:nth-of-type(2){display:none}
+ .reward-offer{line-height:1.2}.depth-title{line-height:1}.progress{line-height:1.2}
+}
+@container(max-width:520px){.reward-offer{padding:0}.pool{padding-top:2px}}
+/* Walking keeps clues visible while a separate row provides touch movement. */
+.mine-board{left:4.75%;width:55.5%}
+
+.walking-controls{position:absolute;left:3%;top:83.2%;width:59%;height:4.6%;display:flex;align-items:center;gap:10px}
+.direction-pad{display:flex;gap:5px;height:100%}
+.rf-game-frame .direction-pad button{width:35px;min-height:0;height:100%;padding:0;font:18px/1 monospace;touch-action:manipulation}
+.walking-controls>span{font:8px/1.3 monospace;color:#a3bdae;letter-spacing:.1px}
+.rf-game-frame .tile.reachable{border-color:#789780;box-shadow:inset 0 0 0 1px #a4c38c22}
+.rf-game-frame .tile.friend-tile{border-color:#dcffac;background:#243731}
+.rf-game-frame .tile.friend-tile:focus-visible{outline:1px solid #d8ffad;outline-offset:-1px}
+.ground-find{position:absolute;right:4%;bottom:4%;display:flex;align-items:center;gap:1px;color:#f0c376;line-height:1;text-shadow:0 1px 3px #000}
+.ground-find i{font-style:normal;font-size:15px}
+.ground-find small{font:9px/1 monospace}
+.has-find .clue{position:absolute;left:8%;top:7%;font-size:18px}
+.reward-offer small{font:8px/1.4 monospace;color:#8da89a;margin-top:2px}
+.treasure.mystery{color:#d7befb}
+.rf-game-frame .tile.treasure-tile{background:#332d45;border-color:#8870af}
+.rf-game-frame .tile.treasure-tile.friend-tile{border-color:#dcffac}
+@container(max-width:800px){
+ .walking-controls{gap:7px}.direction-pad{gap:4px}.rf-game-frame .direction-pad button{width:28px;font-size:15px}
+ .walking-controls>span{font-size:6px}
+ .reward-offer small{font-size:6px;margin-top:1px}.ground-find i{font-size:12px}.ground-find small{font-size:7px}.has-find .clue{font-size:13px}
+}
+@container(max-width:520px){
+ .walking-controls{top:83.4%;height:4.3%;gap:5px}.direction-pad{gap:3px}.rf-game-frame .direction-pad button{width:22px;font-size:13px}
+ .walking-controls>span{font-size:5px;max-width:95px}
+ .reward-offer small{font-size:5px;line-height:1.2}.ground-find i{font-size:9px}.ground-find small{font-size:5px}.has-find .clue{font-size:10px}
+ .ground-find{right:1px;bottom:1px;gap:0}.friend-tile .friend-token{max-width:80%}
+}
+
+/* Collection rays decorate the Friend without changing its canonical pixels. */
+.rf-game-frame .tile.friend-tile{overflow:visible;z-index:2}
+.pickup-shimmer{position:absolute;left:-50%;top:-50%;width:200%;height:200%;overflow:visible;pointer-events:none;fill:none;stroke:#f6d887;stroke-width:2;stroke-linecap:square;shape-rendering:crispEdges}
+.shimmer-ray{animation:rf-pickup-ray 520ms ease-out both}
+@keyframes rf-pickup-ray{0%{opacity:0;transform:translateY(4px)}18%{opacity:1}100%{opacity:0;transform:translateY(-5px)}}
+.pickup-shimmer.reduced .shimmer-ray{animation:none;opacity:.9}
+@media(prefers-reduced-motion:reduce){.shimmer-ray{animation:none;opacity:.9}}
+.rf-game-frame .tile.flag-target{border-color:#f1c978;outline:2px solid #f1c978;outline-offset:-3px;box-shadow:inset 0 0 0 3px #e6c37f22}
+.flag-target:not(.flagged):after{content:'⚑';position:absolute;right:8%;top:8%;font-size:12px;color:#f1c978;pointer-events:none}
+.rf-game-frame .direction-pad.choosing-flag button{color:#f1c978;border-color:#cda961;background:#38362c}
+@container(max-width:520px){.flag-target:not(.flagged):after{font-size:7px}}
+/* Keep the reward panel focused on each level's maximum RF. */
+.wallet-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.wallet-stats .eyebrow{font-size:8px;letter-spacing:.55px;white-space:nowrap}
+.wallet-stats .stat strong{font-size:29px}
+.level-rewards{border-top:1px solid #334941;padding-top:8px;color:#a9bfb1}
+.level-budgets{width:100%;border-collapse:collapse;font:13px/1.4 monospace;table-layout:fixed}
+.level-budgets caption{text-align:left;font:9px/1.4 monospace;letter-spacing:.7px;color:#8fa99c;margin-bottom:5px}
+.level-budgets th,.level-budgets td{padding:5px;text-align:right;font-weight:normal;border-bottom:1px solid #2e423d}
+.level-budgets tr>*:first-child{text-align:left;width:30%}
+.level-budgets thead{font-size:8px;color:#819d8f}
+.level-budgets tbody td{color:#e7e9de}
+.level-budgets .current-level{background:#243a32}
+.level-budgets .current-level>*{color:#dcf5bc}
+.pool-shortfall{display:block;font-size:8px;line-height:1.1;color:#e4be82}
+@container(max-width:800px){
+ .wallet-stats{gap:6px}.wallet-stats .eyebrow{font-size:6px;letter-spacing:.2px}.wallet-stats .stat strong{font-size:22px}
+ .dig-panel{gap:4px}.level-rewards{padding-top:5px}
+ .level-budgets{font-size:9px}.level-budgets caption{font-size:7px;margin-bottom:3px}.level-budgets thead{font-size:6px}
+ .level-budgets th,.level-budgets td{padding:2px 3px}.pool-shortfall{font-size:6px}
+}
+@container(max-width:520px){
+ .wallet-stats{gap:4px}.wallet-stats .eyebrow{font-size:5px;letter-spacing:0}.wallet-stats .stat strong{font-size:15px}
+ .wallet-stats .stat strong small{font-size:6px}.dig-panel{gap:2px}.level-rewards{padding-top:3px}
+ .level-budgets{font-size:8px;line-height:1.2}.level-budgets caption{font-size:6px;letter-spacing:0;margin-bottom:2px}.level-budgets thead{font-size:5px}
+ .level-budgets th,.level-budgets td{padding:1px 2px}.pool-shortfall{font-size:5px}
+ .expedition-actions{flex-direction:row;gap:4px}
+ .rf-game-frame .expedition-actions button{font-size:9px;padding:3px 4px}
+}
+@container(max-width:800px){.dig-panel{height:66.2%}}
+/* Reserve the full square artwork; the clue occupies its own strip above it. */
+.friend-tile .friend-token{width:60%;max-width:none;left:50%;right:auto;bottom:3%;transform:translateX(-50%)}
+.friend-tile .clue{left:6%;top:3%;font-size:clamp(4px,1.3cqw,13px);line-height:1}
+.friend-tile .treasure.mystery,.friend-tile .mine-mark{position:absolute;right:6%;left:auto;top:3%;bottom:auto;font-size:clamp(4px,1.3cqw,13px);line-height:1}
+.mine-burst{position:absolute;left:-50%;top:-50%;width:200%;height:200%;overflow:visible;pointer-events:none;fill:none;stroke:#ff9e7e;stroke-width:2.5;stroke-linecap:square;shape-rendering:crispEdges}
+.blast-ray{animation:rf-mine-ray 620ms ease-out both}
+.blast-ring{transform-origin:center;animation:rf-mine-ring 620ms ease-out both}
+@keyframes rf-mine-ray{0%{opacity:0;transform:translateY(8px)}15%{opacity:1}100%{opacity:0;transform:translateY(-9px)}}
+@keyframes rf-mine-ring{0%{opacity:.8;transform:scale(.4)}100%{opacity:0;transform:scale(1.8)}}
+.mine-burst.reduced .blast-ray,.mine-burst.reduced .blast-ring{animation:none;opacity:.8}
+@media(prefers-reduced-motion:reduce){.blast-ray,.blast-ring{animation:none;opacity:.8}}
+.rf-game-frame .tile.mine-hit.friend-tile{background:#783e37;border-color:#ff9e7e}
+.rf-game-frame .reveal-hit-area{position:absolute;left:4.75%;top:22%;width:55.5%;aspect-ratio:10/8;z-index:5;min-height:0;padding:0;background:transparent;border:0;border-radius:0}
+.rf-game-frame .reveal-hit-area:hover:not(:disabled){background:transparent}
+.rf-game-frame .reveal-hit-area:disabled{opacity:1;cursor:default}
+.rf-game-frame .reveal-continue{display:block;min-height:0;width:100%;padding:0;border:0;background:transparent;color:#f2d092;font:inherit;text-align:left}
+.rf-game-frame .reveal-continue:hover:not(:disabled){background:transparent;color:#ffe6ad}
+.rf-game-frame .reveal-continue:disabled{opacity:1;cursor:default}
+.lost-haul strong{color:#ffab91}
+/* Unopened sources keep their ambiguous resonance after a mine ends the run. */
+.rf-game-frame .tile.source-unopened{background:#263f4a;border-color:#658492;box-shadow:none}
+.source-mark{display:inline-block;position:relative;width:1em;height:1em;color:transparent;font-style:normal;line-height:1;vertical-align:-.12em}
+.source-mark::before,.source-mark::after{content:'';position:absolute;border-radius:50%;border-style:solid;box-sizing:border-box}
+.source-mark::before{inset:0;border-width:.11em;border-color:#c1a6f5}
+.source-mark::after{inset:26%;border-width:.1em;border-color:#f07878}
+.tile .source-mark{font-size:clamp(9px,2cqw,20px)}
+.result-board .source-unopened{background:#263f4a;color:#b0d4df}
+.result-board .jackpot{background:#332d45;color:#d3bdef}
+.result-legend{text-align:center;font-size:11px}
+
+/* Keep the live status region quiet until an action needs explanation. */
+.status-quiet{opacity:0;pointer-events:none}
+
+/* Wallet and stake selection share the same compact layout on keyboard and touch. */
+.header-account{margin-left:auto;text-align:right;display:flex;flex-direction:column;gap:5px;min-width:0}
+.header-account .mode-label{margin:0;font-size:8px}
+.header-wallet{display:flex;align-items:baseline;justify-content:flex-end;gap:9px;font:10px monospace;color:#9fb8a9}
+.header-wallet strong{font:24px/1 Arial,sans-serif;color:#dbeccf;white-space:nowrap}
+.header-wallet small{font:10px monospace;color:#8ca99b}
+.wallet-stats{display:block}.run-stake{font:10px monospace;color:#b7c9b4}
+.stake-picker{border:0;margin:0;padding:0;min-width:0}
+.stake-picker legend{font:10px/1.4 monospace;color:#a9bfb1;margin-bottom:8px;padding:0}
+.stake-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+.rf-game-frame .stake-options button{min-width:0;min-height:32px;padding:4px;font:13px monospace}
+.stake-options button[aria-pressed=true]{background:#c9f18c;color:#171d18;border-color:#c9f18c}
+.stake-picker>small{display:block;font:9px monospace;color:#e4be82;margin-top:5px}
+@container(max-width:800px){
+ .header-account{gap:3px}.header-account .mode-label{font-size:6px}.header-wallet{font-size:8px;gap:6px}.header-wallet strong{font-size:20px}.header-wallet small{font-size:8px}
+ .run-stake{font-size:7px}.stake-picker legend{font-size:8px;margin-bottom:4px}.stake-options{gap:3px}.rf-game-frame .stake-options button{min-height:24px;font-size:10px;padding:2px}
+ .stake-picker>small{font-size:7px}
+}
+@container(max-width:520px){
+ .header-account{gap:2px}.header-account .mode-label{font-size:5px}.header-wallet{font-size:7px;gap:5px}.header-wallet strong{font-size:16px}.header-wallet small{font-size:7px}
+ .run-stake{font-size:5px}.stake-picker legend{font-size:6px;margin-bottom:3px}.stake-options{gap:2px;grid-template-columns:repeat(4,minmax(0,1fr))}.rf-game-frame .stake-options button{min-height:17px;font-size:8px;padding:1px}
+ .stake-picker>small{font-size:5px}.board-counter{font-size:5px}.reward-offer small{font-size:5px;max-width:57px}
+}
+
+/* Entry was paid at admission; show it separately from the forfeited haul. */
+.entry-loss{display:block;margin-top:4px;color:#d8a18d;font:11px/1.3 monospace}
+.result-entry-loss{margin-top:0;font-size:13px}
+@container(max-width:800px){.entry-loss{margin-top:2px;font-size:8px}.result-entry-loss{font-size:11px}}
+@container(max-width:520px){.entry-loss{margin-top:1px;font-size:6px}.result-entry-loss{font-size:10px}}
+
+/* Eight rows fit above the movement controls, with square tiles. */
+.mine-board,.rf-game-frame .reveal-hit-area{left:3%;top:19.5%;width:57.5%}
+.board-tools{top:13.5%}
+
+/* Compact identity and input-specific controls keep attention on the board. */
+.dig-top .identity-art{display:block;flex:none;padding:0;border:0}
+.board-tools,.walking-controls{left:3%;width:57.5%}
+.direction-pad,.touch-hint{display:none}
+.walking-controls>span{font-size:9px;letter-spacing:0}
+.rf-frame-toolbar .rf-frame-mode{display:none}
+@media(pointer:coarse){
+ .direction-pad{display:flex}
+ .keyboard-hint{display:none}
+ .touch-hint{display:inline}
+}
+@container(max-width:800px){.walking-controls>span{font-size:7px}}
+@container(max-width:520px){
+ .dig-top .identity-art .friend-avatar{width:22px;height:22px}
+ .walking-controls>span{font-size:5px;max-width:none}
+ .walking-controls .touch-hint{max-width:80px}
+}
+
+/* Align the grid and entry panel to common top and bottom edges. */
+.mine-board,.rf-game-frame .reveal-hit-area,.board-tools,.walking-controls{left:3%}
+.dig-panel{top:19.5%;width:33.5%;height:46cqw}
+@container(max-width:800px){
+ .dig-panel{gap:3px}
+ .reward-offer{line-height:1.2;padding:2px 0}
+ .level-budgets th,.level-budgets td{padding:1px 3px}
+ .rf-game-frame .expedition-actions button{min-height:32px;font-size:10px;padding:3px 4px}
+}
+@container(max-width:520px){
+ .dig-panel{gap:2px}
+ .reward-offer{padding:0}
+ .level-budgets th,.level-budgets td{padding:1px 2px}
+ .rf-game-frame .expedition-actions button{min-height:24px;font-size:9px}
+}
+@container(max-width:520px){
+ .dig-panel{gap:1px}
+ .level-rewards{padding-top:2px}
+ .level-budgets caption{margin-bottom:1px}
+}
+
+/* Use the same 3% gutter outside and between the board and reward panel. */
+.walking-controls{top:89.5%;height:4%}
+.status{left:63.5%;right:3%;top:89.5%;height:4%;padding:2px 6px;font-size:9px;line-height:1.2}
+@container(max-width:800px){.status{font-size:7px}}
+@container(max-width:520px){.status{font-size:6px;padding:1px 3px}}
+
+.level-budgets tfoot td{color:#e7e9de}
+/* Distribute the side panel evenly instead of leaving one large gap above play. */
+.dig-panel{justify-content:space-between;gap:12px}
+.expedition-actions{margin-top:0}
+.level-budgets th,.level-budgets td{padding:7px 5px}
+@container(max-width:800px){
+ .dig-panel{gap:4px}
+ .level-budgets th,.level-budgets td{padding:3px}
+}
+@container(max-width:520px){
+ .dig-panel{gap:1px}
+ .level-budgets th,.level-budgets td{padding:2px}
+}
+@container(max-width:520px){.level-budgets tr>*:first-child{width:40%}}
+
+/* Keep find/orb rewards together with their level totals. */
+.reward-summary{display:flex;flex-direction:column;gap:10px;min-width:0}
+.reward-offer{border-top:0;padding:0;font-size:12px;line-height:1.4}
+.reward-offer b{font-size:14px}
+.level-rewards{border-top:0;padding-top:0}
+@container(max-width:800px){
+ .reward-summary{gap:6px}
+ .reward-offer{font-size:9px}
+ .reward-offer b{font-size:11px}
+}
+@container(max-width:520px){
+ .reward-summary{gap:4px}
+ .reward-offer{font-size:7px;line-height:1.2}
+ .reward-offer b{font-size:8px}
+}
+
+/* Keep stake selection beside the entry action, below the reward preview. */
+.dig-panel:has(.stake-picker){justify-content:flex-start}
+.dig-panel>.stake-picker{margin-top:auto}
+
+.rf-game-frame .stake-options button:disabled{background:#17252d;border-color:#344548;color:#778b88;opacity:.65;cursor:not-allowed}
+/* Keep all disabled choices visible without adding a third row on phones. */
+@container(max-width:520px){.stake-options{grid-template-columns:repeat(5,minmax(0,1fr))}}
+
+/* Keep the complete entry block anchored to the board bottom. */
+.entry-controls{display:flex;flex-direction:column;gap:34px;flex:none}
+.dig-panel:has(.stake-picker) .entry-controls{position:absolute;left:0;right:0;bottom:0}
+.entry-controls .stake-picker{margin-top:0}
+@container(max-width:800px){.entry-controls{gap:4px}}
+@container(max-width:520px){.entry-controls{gap:1px}}
+
+/* Portrait uses the same saved board, transposed to eight columns by ten rows. */
+@media(max-width:600px) and (orientation:portrait){
+ body{display:block}
+ #root{width:100%;max-width:none}
+ .rf-game-frame{aspect-ratio:auto!important;height:calc(125vw + 540px);border-radius:0}
+ .dig{height:100%}
+ .dig-top{left:16px;right:16px;top:20px;gap:10px}
+ .dig-top h1{font-size:27px}
+ .header-account{gap:5px}.header-account .mode-label{font-size:7px}
+ .header-wallet{font-size:10px;gap:6px}.header-wallet strong{font-size:23px}.header-wallet small{font-size:10px}
+ .dig-top .identity-art .friend-avatar{width:28px;height:28px}
+ .rf-game-frame .settings-button{min-height:34px;padding:3px 7px;font-size:20px}
+ .board-tools{left:16px;top:72px;width:calc(100% - 32px);height:30px;gap:9px}
+ .rf-game-frame .dig-modes button{font-size:11px;padding:3px 10px}
+ .board-counter{font-size:9px}
+ .rf-game-frame .help-button{font-size:10px;min-height:28px}.help-button:after{content:none}
+ .mine-board,.rf-game-frame .reveal-hit-area{left:16px;top:110px;width:calc(100% - 32px);height:calc(125cqw - 40px);aspect-ratio:auto}
+ .mine-board{grid-template-columns:repeat(8,minmax(0,1fr));grid-template-rows:repeat(10,minmax(0,1fr));gap:4px;padding:5px}
+ .clue{font-size:22px}.has-find .clue{font-size:14px}
+ .friend-tile .clue,.friend-tile .treasure.mystery,.friend-tile .mine-mark{font-size:10px}
+ .ground-find i{font-size:11px}.ground-find small{font-size:7px}
+ .tile .source-mark{font-size:20px}.mine-mark{font-size:25px}.flag-mark{font-size:23px}
+ .camp-card{inset:10% 5%;padding:15px}.camp-card h2{font-size:28px;margin:16px 0}
+ .camp-card .eyebrow{font-size:8px}.camp-card p{font-size:13px;line-height:1.5;margin:0 0 20px}.camp-hint{font-size:8px}
+ .dig-panel{left:16px;right:auto;top:calc(125cqw + 90px);width:calc(100% - 32px);padding-right:132px;height:360px;gap:8px;justify-content:flex-start}
+ .depth-title{padding-bottom:6px;border-bottom:1px solid #354845}.depth-title .eyebrow{font-size:11px}.run-stake{font-size:9px}
+ .wallet-stats .eyebrow{font-size:9px}.wallet-stats .stat strong{font-size:27px}.wallet-stats .stat strong small{font-size:10px}
+ .progress{font-size:10px;line-height:1.2}
+ .reward-summary{gap:8px}.reward-offer{font-size:11px;line-height:1.3;gap:6px}.reward-offer b{font-size:12px}
+ .level-budgets{font-size:11px;line-height:1.2}.level-budgets thead{font-size:9px}
+ .level-budgets th,.level-budgets td{padding:4px 2px}.level-budgets tr>*:first-child{width:42%}
+ .pool-shortfall{font-size:8px}
+ .entry-controls,.dig-panel:has(.stake-picker) .entry-controls{position:absolute;bottom:0;left:0;right:auto;width:calc(100cqw - 32px);gap:10px}
+ .stake-picker legend{font-size:11px;margin-bottom:8px}.stake-picker>small{font-size:10px}
+ .stake-options{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+ .rf-game-frame .stake-options button{min-height:38px;font-size:13px;padding:4px}
+ .expedition-actions{gap:8px}.rf-game-frame .expedition-actions button{min-height:44px;font-size:14px;padding:7px 10px;line-height:1.2}
+ .expedition-actions button small{font-size:10px;line-height:1.2;margin-top:4px}
+ .walking-controls{left:auto;right:16px;top:calc(125cqw + 90px);width:116px;height:auto;display:flex;flex-direction:column;gap:10px}
+ .direction-pad{display:grid;grid-template-columns:repeat(3,36px);grid-template-rows:repeat(3,36px);gap:4px;height:auto}
+ .rf-game-frame .direction-pad button{width:36px;height:36px;font-size:22px;min-height:0}
+ .direction-pad [data-direction="up"]{grid-column:2;grid-row:1}
+ .direction-pad [data-direction="left"]{grid-column:1;grid-row:2}
+ .direction-pad [data-direction="right"]{grid-column:3;grid-row:2}
+ .direction-pad [data-direction="down"]{grid-column:2;grid-row:3}
+ .walking-controls .touch-hint{display:block;font-size:11px;line-height:1.5;max-width:none;text-align:center}
+ .walking-controls .keyboard-hint{display:none}
+ .status{left:16px;right:16px;top:calc(125cqw + 462px);height:36px;font-size:11px;padding:4px 7px}
+ .rf-frame-toolbar{left:16px;right:75px;bottom:12px;gap:5px}
+ .rf-frame-toolbar button{font-size:9px;min-height:28px;padding:4px 6px;max-width:60%}
+ .rf-game-frame .footer-help{right:16px;bottom:12px;min-height:28px;font-size:10px}
+ .rf-frame-scrim{padding:12px;align-items:flex-start;padding-top:24px}
+ .rf-frame-menu{max-height:calc(100dvh - 48px)}
+ .rf-frame-menu-heading h2{font-size:18px}.rf-frame-menu-body{font-size:13px;padding:14px}
+ .rf-frame-menu-heading,.rf-frame-menu-footer{padding:10px}
+ .rf-frame-friends button{min-height:76px;font-size:13px}.rf-frame-friends small{font-size:11px}
+ .result-board{grid-template-columns:repeat(8,1fr);aspect-ratio:8/10;max-width:220px}.result-board span{font-size:10px}
+ .entry-loss{font-size:10px}.result-entry-loss{font-size:12px}
+}
+@media(max-width:600px) and (orientation:portrait){.walking-controls{z-index:1}}
+@media(max-width:360px) and (orientation:portrait){
+ .dig-top{gap:6px}.dig-top h1{font-size:20px;white-space:nowrap}
+ .header-wallet{gap:4px}.header-wallet strong{font-size:20px}
+}
+
+/* Pixel interface: original local vectors, crisp edges and restrained colour. */
+:root{
+ --pixel-paper:#efeee5;
+ --pixel-ink:#101b22;
+ --pixel-orb:#c1a6f5;
+ --pixel-mine:#f07878;
+ --pixel-font:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+.rf-game-frame{font-family:var(--pixel-font);border-color:#687674}
+.dig-top h1{height:34px;line-height:1;margin:5px 0 0;letter-spacing:0}
+.pixel-title{display:block;width:180px;height:28px;max-width:100%;color:var(--pixel-paper)}
+.pixel-icon{display:inline-block;width:1em;height:1em;vertical-align:-.1em;flex:none;pointer-events:none}
+.rf-game-frame .settings-button{display:grid;place-items:center;flex:none}
+.settings-button .settings-icon{width:16px;height:16px}
+.rf-game-frame .dig-modes button{display:inline-flex;align-items:center;justify-content:center;gap:5px}
+.dig-modes .pixel-icon{width:12px;height:12px}
+.rf-game-frame .dig-modes button[aria-pressed=true],
+.rf-game-frame .stake-options button[aria-pressed=true],
+.rf-game-frame .primary,.rf-frame-scrim .rf-frame-primary{box-shadow:2px 2px #080c0e}
+.mine-board{border-color:#3a514d;border-radius:7px;background:#0b141b}
+.rf-game-frame .tile.flag-target{outline-color:#edcc84;box-shadow:none}
+.flag-target:not(.flagged):after{content:none}
+.flag-preview{position:absolute;top:8%;right:8%;font-size:12px;line-height:1;color:#edcc84;pointer-events:none}
+.source-mark,.flag-mark,.mine-mark,.treasure.mystery{display:inline-block;width:1em;height:1em;line-height:1;vertical-align:-.1em}
+.source-mark{color:var(--pixel-orb)}
+.source-mark::before,.source-mark::after{content:none}
+.source-mark .pixel-icon,.flag-mark .pixel-icon,.mine-mark .pixel-icon,.treasure.mystery .pixel-icon{display:block;width:100%;height:100%}
+.ground-find i{display:block;line-height:1}
+.ground-find .pixel-icon{display:block}
+.camp-card{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M0 0h1v1H0zM4 4h1v1H4z' fill='%23dbe4d7' opacity='.04'/%3E%3C/svg%3E")}
+.camp-card h2{font-family:var(--pixel-font);font-size:26px;line-height:1.22;letter-spacing:-1px;color:var(--pixel-paper)}
+.camp-card p{color:#b2c0ba}
+.camp-card .eyebrow,.camp-hint{letter-spacing:1px}
+.header-wallet strong,.stat strong,.result-number{font-family:var(--pixel-font);letter-spacing:-1px}
+.header-wallet strong{color:var(--pixel-paper)}
+.level-budgets .current-level{background:#2b3530}
+.level-budgets .current-level>*{color:#d5f0af}
+.level-budgets th,.level-budgets td{border-color:#45524f}
+.level-budgets thead{color:#a0b0a6}
+.level-budgets tfoot td{color:#e7e9de}
+.reward-offer{color:#b7c5bc}
+.reward-offer b{color:#e8c584}
+.rf-game-frame .expedition-actions button{font-family:var(--pixel-font)}
+.rf-game-frame .stake-options button:disabled{background:#1c2428;border-color:#3e4b4e;color:#82928e;opacity:.65;box-shadow:none}
+.rf-game-frame .stake-options button[aria-pressed=true]:hover{background:#dcf9aa;border-color:#dcf9aa;color:#171d18}
+.rf-frame-scrim{background:#080d11d9}
+.rf-frame-menu-heading h2{font-family:var(--pixel-font);font-weight:600;letter-spacing:-.5px}
+.rf-frame-menu-heading,.rf-frame-menu-footer{border-color:#596763}
+.rf-frame-toolbar button{border:1px solid #526460}
+.rf-game-frame .direction-pad button{display:grid;place-items:center}
+.direction-pad .pixel-icon{width:16px;height:16px}
+.result-board>.hit>.pixel-icon,.result-board>.jackpot>.pixel-icon{width:1em;height:1em}
+.result-board .source-mark{width:1em;height:1em}
+@container(max-width:800px){
+ .dig-top h1{height:25px;margin-top:4px}
+ .pixel-title{width:135px;height:21px}
+ .camp-card h2{font-size:20px}
+ .dig-modes .pixel-icon{width:10px;height:10px}
+ .flag-preview{font-size:9px}
+ .direction-pad .pixel-icon{width:12px;height:12px}
+}
+@container(max-width:520px){
+ .dig-top h1{height:21px}
+ .pixel-title{width:110px;height:18px}
+ .camp-card h2{font-size:14px;letter-spacing:-.5px}
+ .settings-button .settings-icon{width:12px;height:12px}
+ .dig-modes .pixel-icon{width:8px;height:8px}
+ .flag-preview{font-size:7px}
+ .camp-card .eyebrow,.camp-hint{letter-spacing:0}
+}
+@media(max-width:600px) and (orientation:portrait){
+ .dig-top h1{height:26px;margin:0}
+ .pixel-title{width:135px;height:21px}
+ .settings-button .settings-icon{width:16px;height:16px}
+ .dig-modes .pixel-icon{width:12px;height:12px}
+ .camp-card h2{font-size:clamp(18px,5.7vw,26px);letter-spacing:-1px}
+ .direction-pad .pixel-icon{width:16px;height:16px}
+ .flag-preview{font-size:11px}
+ .rf-frame-menu-heading h2{font-size:16px}
+}
+@media(max-width:360px) and (orientation:portrait){.pixel-title{width:110px;height:18px}}
+
+/* Centre unoccupied orbs; ground-find icons and amounts share the bottom row. */
+.dig-panel:has(.deeper) .entry-controls{position:static;margin-top:0;width:100%}
+.dig-panel:has(.deeper) .expedition-actions{flex-direction:row;align-items:stretch}
+.rf-game-frame .expedition-actions button{
+ border-radius:3px;box-shadow:inset 1px 1px #ffffff33,inset -2px -2px #12282c55;
+}
+@media(max-width:600px) and (orientation:portrait){
+ .dig-panel:has(.deeper) .entry-controls{width:calc(100cqw - 32px)}
+}
+.dig-top,.dig-top h1{align-items:flex-end}
+.dig-top .identity-art{margin-left:auto}
+.dig-top .header-account{margin-left:0}
+.run-overview{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.run-overview .progress{flex-direction:column;align-items:flex-end;gap:8px;padding:0}
+@media(min-width:601px),(orientation:landscape){
+ .mine-board,.rf-game-frame .reveal-hit-area{top:17.5%;width:59%}
+ .dig-panel{top:17.5%;width:32%;height:47.2cqw;justify-content:flex-start;gap:16px}
+ .dig-panel{--panel-inset:7px;padding-top:7px;padding-bottom:7px}
+ .dig-panel:has(.stake-picker) .entry-controls{bottom:var(--panel-inset)}
+ .dig-panel:has(.deeper) .entry-controls{margin-top:auto}
+ .dig-panel .reward-summary{flex:none;gap:12px;min-height:0}
+ .dig-panel .level-rewards{flex:none;display:block;min-height:0}
+ .dig-panel .level-budgets{height:auto;margin:0}
+ .dig-panel:has(.stake-picker) .reward-summary{flex:none}
+ .entry-controls{margin-top:auto}
+ .rf-game-frame .expedition-actions button{font-size:12px}
+ .board-tools{left:auto;right:38%;top:89.5%;width:auto;height:4%;z-index:3}
+ .walking-controls{width:59%;padding-right:190px}
+ @container(max-width:800px){
+  .dig-panel{gap:8px}
+  .dig-panel{--panel-inset:5px;padding-top:5px;padding-bottom:5px}
+  .dig-panel .reward-summary{gap:6px}
+  .run-overview{gap:6px}
+  .run-overview .progress{font-size:8px;gap:5px}
+  .walking-controls{padding-right:130px}
+  .rf-game-frame .expedition-actions button{font-size:10px}
+ }
+ @container(max-width:520px){
+  .dig-panel{gap:4px}
+  .dig-panel{--panel-inset:4px;padding-top:4px;padding-bottom:4px}
+  .dig-panel .reward-summary{gap:4px}
+  .run-overview .progress{font-size:6px;gap:3px}
+  .walking-controls{padding-right:100px}
+  .rf-game-frame .expedition-actions button{font-size:9px}
+ }
+}
+@media(max-width:600px) and (orientation:portrait){
+ .run-overview{align-items:flex-start;flex-direction:column;gap:8px}
+ .run-overview .progress{align-items:flex-start;gap:5px}
+}
+.dig-panel .progress{flex-wrap:wrap;gap:6px 12px}
+.dig-panel .board-counter{font:inherit;letter-spacing:0}
+.tile:not(.friend-tile) .treasure.mystery{
+ left:50%;top:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);
+}
+
+/* Give finds breathing room at the lower left; centre amounts in the remaining space. */
+.tile .flag-mark{transform:scale(.85)}
+.tile.has-find{--find-clue-size:18px;--find-icon-size:15px;--find-amount-size:11px}
+.tile.has-find .clue{font-size:var(--find-clue-size)}
+.tile .ground-find{
+ left:calc(8% + 2px);right:0;bottom:calc(4% + 2px);width:auto;transform:none;white-space:nowrap;
+ gap:0;font:var(--find-clue-size)/1 monospace;
+}
+.tile .ground-find i{display:flex;align-items:center;justify-content:center;width:1ch;min-width:0;flex:none;font-size:inherit;margin-right:max(0px,calc((var(--find-icon-size) - 1ch)/2))}
+.tile .ground-find .pixel-icon{width:var(--find-icon-size);height:var(--find-icon-size);flex:none}
+.tile .ground-find small{flex:1;min-width:0;text-align:center;font:var(--find-amount-size)/1 monospace}
+@container(max-width:800px){.tile.has-find{--find-clue-size:13px;--find-icon-size:12px;--find-amount-size:8px}}
+@container(max-width:520px){.tile.has-find{--find-clue-size:10px;--find-icon-size:9px;--find-amount-size:6px}}
+@media(max-width:600px) and (orientation:portrait){.tile.has-find{--find-clue-size:14px;--find-icon-size:11px;--find-amount-size:8px}}
+
+/* Real, locally bundled pixel lettering for the title and a single camp tagline. */
+.dig-top>div:first-child>.eyebrow{font-family:Silkscreen,monospace;font-weight:400;letter-spacing:0;font-synthesis:none}
+.dig-top h1,.camp-card h2{font-family:Silkscreen,monospace;font-weight:400;letter-spacing:0;font-synthesis:none}
+.dig-top h1{font-size:32px;line-height:1;height:34px;white-space:nowrap}
+.camp-card{inset:30% 6%;padding:16px}
+.camp-card h2{font-size:26px;line-height:1.4;margin:0}
+@container(max-width:800px){
+ .dig-top h1{font-size:24px;height:25px}
+ .camp-card h2{font-size:20px}
+}
+@container(max-width:520px){
+ .dig-top h1{font-size:19px;height:21px}
+ .camp-card{padding:8px}
+ .camp-card h2{font-size:14px}
+}
+@media(max-width:600px) and (orientation:portrait){
+ .dig-top h1{font-size:23px;height:26px}
+ .camp-card{inset:34% 5%;padding:12px}
+ .camp-card h2{font-size:clamp(17px,5vw,22px)}
+}
+@media(max-width:360px) and (orientation:portrait){.dig-top h1{font-size:19px}}
+.title-orb{display:block;flex:none;width:22px;height:22px;margin:0 0 4px 5px}
+.title-orb .pixel-icon{display:block;width:100%;height:100%}
+@container(max-width:800px){.title-orb{width:17px;height:17px;margin-bottom:3px;margin-left:3px}}
+@container(max-width:520px){.title-orb{width:14px;height:14px;margin-bottom:2px}}
+@media(max-width:600px) and (orientation:portrait){.title-orb{width:16px;height:16px;margin-bottom:3px}}
+
+/* Place run context just above the board, separate from the reward sidebar. */
+.depth-title.board-depth-title{position:absolute;top:89.5%;right:38%;height:4%;justify-content:flex-end;gap:14px;padding:0;border:0;white-space:nowrap}
+@container(max-width:800px){.depth-title.board-depth-title{gap:9px}}
+@container(max-width:520px){.depth-title.board-depth-title{gap:6px}}
+@media(max-width:600px) and (orientation:portrait){
+ .depth-title.board-depth-title{top:82px;left:auto;right:16px;height:18px;gap:10px}
+ .dig-panel,.walking-controls{top:calc(125cqw + 106px)}
+ .dig-panel{height:344px}
+ .rf-frame-toolbar{right:104px}
+ .rf-frame-toolbar button{min-width:0;flex-shrink:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
+
+/* Keep the eight entry amounts in two consistent rows. */
+.stake-options{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+/* A mine ends on the board, using the same card as the entry tagline. */
+.reward-offer>span:last-child{text-align:right;align-items:flex-end}
+.mine-result-overlay{position:absolute;left:3%;top:17.5%;width:59%;aspect-ratio:10/8;z-index:5;pointer-events:none}
+.camp-card.mine-result-card{top:50%;bottom:auto;transform:translateY(-50%);padding:22px 16px;pointer-events:auto}
+.mine-result-card:focus{outline:none}
+.mine-result-card h2{font-size:24px;line-height:1.3}
+.mine-result-card p{margin:12px 0;font:13px/1.4 monospace;color:#b7c5bc}
+.rf-game-frame .mine-result-card button{border-radius:3px;padding:7px 20px;font:12px monospace;box-shadow:inset 1px 1px #ffffff33,inset -2px -2px #12282c55}
+@container(max-width:800px){
+ .camp-card.mine-result-card{padding:14px 10px}
+ .mine-result-card h2{font-size:18px}
+ .mine-result-card p{margin:8px 0;font-size:10px}
+ .rf-game-frame .mine-result-card button{min-height:28px;font-size:10px;padding:5px 16px}
+}
+@container(max-width:520px){.mine-result-card h2{font-size:14px}}
+@media(max-width:600px) and (orientation:portrait){
+ .mine-result-overlay{left:16px;top:110px;width:calc(100% - 32px);height:calc(125cqw - 40px);aspect-ratio:auto}
+ .mine-result-card h2{font-size:20px}
+ .mine-result-card p{font-size:12px;margin:12px 0}
+ .rf-game-frame .mine-result-card button{min-height:38px;font-size:13px}
+}
+
+/* Use the canonical Friend as the placement pointer, with a keyboard preview too. */
+.mine-board[data-placing=true] .tile{cursor:inherit}
+.placement-preview{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
+.mine-board[data-placing=true] .tile:focus-visible .placement-preview{display:block}
+.mine-board[data-placing=true] .tile:focus-visible .covered-mark{visibility:hidden}
+.placement-preview .friend-avatar{width:32px;height:32px;max-width:none}
+@container(max-width:800px){.placement-preview .friend-avatar{width:24px;height:24px}}
+
+.mine-result-card h2 + button{margin-top:16px}
+
+/* A short, scannable guide; detailed economy rules stay in the README. */
+.how-to-play{font-size:12px;line-height:1.5}
+.how-to-play .rules-intro{margin:0 0 14px}
+.how-to-play ol{margin:0;padding-left:19px;display:grid;gap:10px}
+.rules-controls{margin:16px 0;padding:12px 0;border-top:1px solid #45524f;border-bottom:1px solid #45524f;display:grid;gap:8px}
+.rules-controls>div{display:grid;grid-template-columns:48px 1fr;gap:10px}
+.rules-controls dt{color:#d9efc6;font-weight:600}
+.rules-controls dd{margin:0;color:#c0cbc7}
+.how-to-play .rules-note{margin:0;font-size:11px;color:#9dadae}
+@media(max-width:600px) and (orientation:portrait){.how-to-play{font-size:12px}}
+
+/* Start with the primary pointer, then follow actual input rather than browser/device guesses. */
+.dig[data-touch-controls="false"] .direction-pad,.dig[data-touch-controls="false"] .touch-hint{display:none}
+.dig[data-touch-controls="false"] .keyboard-hint{display:inline}
+.dig[data-touch-controls="true"] .direction-pad{display:flex}
+.dig[data-touch-controls="true"] .touch-hint{display:inline}
+.dig[data-touch-controls="true"] .keyboard-hint{display:none}
+@media(max-width:600px) and (orientation:portrait){
+ .dig[data-touch-controls="true"] .direction-pad{display:grid}
+ .dig[data-touch-controls="true"] .touch-hint{display:block}
+}
+
+/* Same one-shot directional flag action as F; centre of the portrait D-pad. */
+.rf-game-frame .direction-pad button.flag-toggle,
+.rf-game-frame .direction-pad button.flag-toggle:hover:not(:disabled){position:relative;border:0;background:transparent;box-shadow:none;color:#b7c5bc}
+.direction-pad .flag-toggle::before{content:'';position:absolute;inset:2px;border:1px solid #526460;background:#20292d}
+.direction-pad .flag-toggle .pixel-icon{position:relative;z-index:1}
+.rf-game-frame .direction-pad button.flag-toggle[aria-pressed=true],
+.rf-game-frame .direction-pad button.flag-toggle[aria-pressed=true]:hover:not(:disabled){color:#171d18}
+.direction-pad .flag-toggle[aria-pressed=true]::before{background:#f1c978;border-color:#f1c978}
+@media(max-width:600px) and (orientation:portrait){
+ .direction-pad .flag-toggle { grid-column:2; grid-row:2; }
+}
+
+/* Touch placement mirrors the desktop prompt at the grid's bottom-left. */
+.touch-start-hint{position:absolute;left:3%;top:89.5%;height:4%;display:flex;align-items:center;font:9px/1.3 monospace;color:#a3bdae;pointer-events:none}
+.dig .touch-hint[hidden]{display:none}
+@container(max-width:800px){.touch-start-hint{font-size:7px}}
+@container(max-width:520px){.touch-start-hint{font-size:5px}}
+@media(min-width:601px),(orientation:landscape){
+ .dig:has(.touch-start-hint) .walking-controls{visibility:hidden}
+}
+@media(max-width:600px) and (orientation:portrait){
+ .touch-start-hint{left:16px;top:calc(125cqw + 74px);height:18px;font-size:9px}
+}
+
+/* Large, outlined 16px sprites at an exact 2× scale on the portrait D-pad. */
+@media(max-width:600px) and (orientation:portrait){
+ .direction-pad [data-direction] .pixel-icon{width:32px;height:32px}
+}
+
+/* Unboxed arrows: only legal covered neighbours light up during flag targeting. */
+.rf-game-frame .direction-pad button[data-direction],
+.rf-game-frame .direction-pad button[data-direction]:hover:not(:disabled){
+ background:transparent;border:0;box-shadow:none;color:#b7c5bc;
+}
+.rf-game-frame .direction-pad.choosing-flag button[data-direction]{opacity:.3}
+.rf-game-frame .direction-pad.choosing-flag button[data-can-flag=true]{color:#f1c978;opacity:1}
+@media(max-width:600px) and (orientation:portrait){
+ .rf-game-frame{height:calc(125vw + 620px)}
+ .walking-controls{width:164px}
+ .direction-pad{grid-template-columns:repeat(3,52px);grid-template-rows:repeat(3,52px)}
+ .rf-game-frame .direction-pad button{width:52px;height:52px}
+ .direction-pad [data-direction] .pixel-icon{width:48px;height:48px}
+ .direction-pad .flag-toggle::before{inset:10px}
+ .direction-pad .flag-toggle .pixel-icon{width:16px;height:16px}
+ .dig-panel{padding-right:0;height:424px}
+ .dig:has(.walking-controls) .run-overview{min-height:164px;padding-right:180px;justify-content:flex-start}
+ .status{top:calc(125cqw + 542px)}
+}
+
+/* Mobile orbs stay legible; occupied tiles retain space for the full Friend. */
+@media(max-width:600px) and (orientation:portrait){
+ .tile:not(.friend-tile) .treasure.mystery{font-size:clamp(16px,5.2cqw,24px)}
+ .friend-tile .treasure.mystery{font-size:clamp(9px,3cqw,12px)}
+}
+
+/* Let the mobile game meet the screen edge, with breathing room above extraction. */
+@media(pointer:coarse),(max-width:600px) and (orientation:portrait){
+ .rf-game-frame{border:0;box-shadow:none}
+}
+@media(max-width:600px) and (orientation:portrait){
+ .dig:has(.walking-controls) .reward-summary{margin-top:16px}
+ .dig-panel:has(.deeper) .entry-controls{margin-top:16px}
+ .dig-panel:has(.stake-picker) .entry-controls{position:static;margin-top:16px;width:100%}
+}
+
+/* Keep the Rare Friends label legible above the title at every screen size. */
+.dig-top>div:first-child>.eyebrow{display:block;font-size:14px;line-height:1.4}
+@container(max-width:800px){.dig-top>div:first-child>.eyebrow{font-size:12px}}
+@container(max-width:520px){.dig-top>div:first-child>.eyebrow{font-size:10px}}
+@media(max-width:600px) and (orientation:portrait){
+ .dig-top>div:first-child>.eyebrow{font-size:11px}
+}
+@media(max-width:360px) and (orientation:portrait){
+ .dig-top>div:first-child>.eyebrow{font-size:10px}
+}
+
+/* Friend identity is managed through Settings, not bottom toolbar buttons. */
+.rf-frame-toolbar > button { display: none; }
+.rf-frame-friends:has(.rf-friend-artwork) { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; }
+.rf-frame-friends:has(.rf-friend-artwork) > button { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:12px 8px; min-width:0; }
+.rf-friend-artwork { display:flex; align-items:center; justify-content:center; min-height:64px; }
+.rf-friend-artwork canvas { display:block; width:64px; height:64px; image-rendering:pixelated; }
+.rf-friend-artwork canvas[hidden] { display:none; }
+.rf-friend-artwork small { max-width:120px; text-align:center; }
+/* Keep long Friend galleries inside the frame; only the card list/body scrolls. */
+.rf-frame-scrim:has(.rf-frame-friends) { grid-template-rows:minmax(0,1fr); }
+.rf-frame-menu:has(.rf-frame-friends) { max-height:min(100%,calc(100dvh - 48px)); }
+.settings-actions { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.rf-frame-scrim .settings-sound { margin-left:auto; width:40px; height:40px; min-height:40px; padding:8px; border:0; background:transparent; color:#b7c5bc; }
+.settings-sound svg { display:block; width:24px; height:24px; }
+.rf-frame-scrim .settings-sound[aria-pressed=true] { color:#c9f18c; }
+.settings-links { display:flex; justify-content:space-between; gap:20px; width:100%; }
+.rf-frame-scrim .settings-links button { padding:6px 0; min-height:32px; border:0; background:transparent; color:#b7c5bc; font-size:12px; text-decoration:underline; text-underline-offset:3px; }
+.rf-frame-scrim .settings-links button:hover:not(:disabled) { background:transparent; color:#efeee5; }
+/* Session scope belongs beside footer help, leaving the header compact. */
+.session-note { position:absolute; left:3%; bottom:1.3%; min-height:23px; display:flex; align-items:center; max-width:calc(100% - 130px); font:9px/1.4 monospace; color:#98aa96; }
+@container(max-width:800px) { .session-note { min-height:18px; font-size:7px; } }
+@container(max-width:520px) { .session-note { min-height:14px; font-size:6px; } }
+@media(max-width:600px) and (orientation:portrait) { .session-note { left:16px; bottom:12px; min-height:28px; font-size:10px; } }
+.rf-game-frame .settings-button, .rf-game-frame .settings-button:hover:not(:disabled) { border:0; background:transparent; box-shadow:none; }

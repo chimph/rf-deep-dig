@@ -1,0 +1,135 @@
+{
+  "name": "Deep Dig",
+  "consumable": "Expedition admission (three depths)",
+  "price": "1000000000000000000",
+  "outcomes": [
+    {
+      "name": "Resonance mine",
+      "chanceBps": 5000,
+      "reward": "0"
+    },
+    {
+      "name": "Depth 1 resonant orb",
+      "chanceBps": 5000,
+      "reward": "1000000000000000000"
+    }
+  ],
+  "runtime": {
+    "friendPickerArtwork": true
+  },
+  "deepDig": {
+    "sdkVersion": "0.1.2",
+    "mode": "simulated-only: wallet-gated submission plus preserved offline runner",
+    "identity": "Submission: official GameHost fresh generation >= 1 ownership gate on Robinhood 4663; canonical artwork from selected token. Offline: sample Friends, no ownership claim.",
+    "rfDecimals": 18,
+    "startingWalletRf": "20",
+    "startingPoolRf": "1000000",
+    "sampleFriends": [
+      "7730",
+      "3412"
+    ],
+    "entryRfPerExpedition": "Player-selected positive whole RF; minimum 1",
+    "advanceCostRf": "0",
+    "maxDepth": 3,
+    "board": {
+      "columns": 10,
+      "rows": 8
+    },
+    "levels": [
+      {
+        "depth": 1,
+        "mysteryTiles": 10,
+        "mysteryReward": "1000000000000000000",
+        "groundFinds": [
+          {
+            "count": 4,
+            "reward": "10000000000000000"
+          },
+          {
+            "count": 4,
+            "reward": "20000000000000000"
+          },
+          {
+            "count": 4,
+            "reward": "30000000000000000"
+          }
+        ]
+      },
+      {
+        "depth": 2,
+        "mysteryTiles": 10,
+        "mysteryReward": "1360000000000000000",
+        "groundFinds": [
+          {
+            "count": 4,
+            "reward": "20000000000000000"
+          },
+          {
+            "count": 4,
+            "reward": "40000000000000000"
+          },
+          {
+            "count": 4,
+            "reward": "60000000000000000"
+          }
+        ]
+      },
+      {
+        "depth": 3,
+        "mysteryTiles": 10,
+        "mysteryReward": "2160000000000000000",
+        "groundFinds": [
+          {
+            "count": 4,
+            "reward": "30000000000000000"
+          },
+          {
+            "count": 4,
+            "reward": "60000000000000000"
+          },
+          {
+            "count": 4,
+            "reward": "90000000000000000"
+          }
+        ]
+      }
+    ],
+    "clueRule": "Numbers count resonance sources in all eight surrounding cells: both orbs and mines. Safe zero regions reveal automatically but do not collect RF. Counts remain fixed after a source opens.",
+    "mysteryRule": "Every new level has exactly five orbs and five mines. Independently shuffle this fixed split and the source-placement order before play. Ground clues count both. Each recovered orb pays once; a mine loses the whole carried haul. The info sidebar shows only Orbs found: N/5, not odds or a mine counter.",
+    "firstDigRule": "Committed placement order determines the board around the first chosen tile. That tile and its eight neighbours are ordinary. All ordinary tiles are cardinally connected and every source has an ordinary cardinal approach. Reachability does not promise a no-guess puzzle.",
+    "flagRule": "After choosing the first tile, tap F then an arrow/WASD direction or direction-pad button to flag or unflag that neighbour without moving. Highlight eligible neighbours while armed; return to walking after success. F or Escape cancels; revealed tiles and board edges leave it armed. Right-click or a 450 ms mobile long-press can mark any covered tile remotely. A flag blocks ordinary movement into it. Stand adjacent and explicitly confirm risk to enter a flagged tile. Flags are player choices, not proof; no automatic flags.",
+    "advanceRule": "Reveal all ordinary ground and recover at least one orb on the current level to descend free. All remaining levels were reserved at admission; accepted new runs cannot encounter a funding-blocked descent. Depth 3 is terminal.",
+    "reserveRule": "At entry reserve all three levels: 5.24 / 7.28 / 11.52 times the stake, total 24.04 times stake. Mine caches reserve zero; five paying orbs and all twelve ground finds are fully backed. Keep future backing separate from free pool funds. Descents use that backing and return only unused current-level rewards. Extraction or failure releases all unused current and future backing. Idle expiry releases all backing and pays only the original stake from that value instead of paying the haul; it needs no additional reserve.",
+    "failureRule": "100% of carried collected RF returns to the same pool with Friend/run provenance. Uncollected reserves return too. Provenance tags are a subset of pool value, not additional RF.",
+    "tileRewardRule": "Each level has 12 independently shuffled ground-find locations among ordinary tiles, four of each listed amount. Other ordinary tiles pay zero. Revealing exposes a find; walking onto it collects its RF once. Collected RF is extractable immediately, without board completion or an orb.",
+    "extractionRule": "Extract anytime to bank collected RF and finish. Release unused current and future rewards. The chosen stake is charged once; all entry RF enters the shared pool. Empty extraction pays zero and does not refund entry.",
+    "provenanceRule": "Allocate available previously lost RF first, FIFO, into new reward reserves. Recovery does not increase rewards or create RF.",
+    "persistence": "Keep localStorage v4 and preserve existing tiles and wallets. Upgrade seven-row saves by appending one empty ordinary row; no existing sources, loot, flags, position or RF move. New boards use 10 columns and 8 rows. New runs have layout five-five, stake and future reserves. Older random-split 8/12/16-source boards retain contents/prizes until leaving that level. On the first upgrade, add enough simulated RF to make pool plus reserves plus carried haul 1,000,000; preserve wallets, board and tagged losses, record issued supply and a one-time seed flag. Never automatically refill after ordinary play. Legacy v1/v2/v3 migration keeps original keys. Persist lastActivityAt for active runs. Reloading keeps the deadline and immediately settles an expired run. An older active v4 save without this timestamp receives one fresh ten-minute grace window, preserving board and balances.",
+    "economyStatus": "Simulated RF only. Entry is paid once and all three depths are reserved at admission. Sources are sampled without replacement. Costs, rewards, extraction and idle-refund rules are defined below. No real funds or live RF actions.",
+    "capabilityGap": "SDK identity, sandbox and artwork with a session-only custom bigint pooled engine. Fixed-table stock actions and balance are unused; no persistence API, trusted hidden board, shared pool, live adapter or multiplayer service. See SUBMISSION.md.",
+    "pauseRule": "Menus block board input but do not stop the inactivity clock. No deadline while actively playing; accepted gameplay actions reset the idle deadline.",
+    "resetRule": "Explicit confirmation resets both sample wallets to 20 RF and the simulated pool to 1,000,000 RF; total issued supply 1,000,040 RF.",
+    "outcomesCompatibility": "Top-level metadata describes the first depth-1 source at the base 1 RF stake only. Later attempts sample the fixed split without replacement; selected stakes scale prizes. The stock ChanceGame adapter does not implement this walking economy.",
+    "movementRule": "First step may choose any tile. After that, arrows/WASD or taps walk only one cardinal neighbouring tile. Entering covered ground reveals it. Revealed ground can be revisited. No remote digging or chording. Flag directions are explicitly selected, independent of character artwork.",
+    "characterPresentation": "Canonical front/down idle frame 0, with SDK horizontal fallback for Colossus. Submission reads selected Friend artwork through createFriendReader; offline keeps bundled samples. No rotation, mirroring or redraw.",
+    "pickupFeedback": "Only an actual increase in carried RF triggers a 600 ms gold radial-line shimmer around the Friend. Reduced motion shows brief static rays. Revealing an uncollected find does not trigger it.",
+    "poolDisplayRule": "Header groups Wallet and the canonical Friend at the right, with no pickaxe. No Base camp line, global pool total, pot percentages or nearby-sources legend. Direction buttons appear only on touch-capable devices; desktop uses a compact keyboard hint. Grid aligns with the title; entry panel aligns with the grid top and bottom. Historical log lines are hidden; current error/input feedback and mine acknowledgement remain available. Entry-stake buttons update ground/orb prizes and the Level / Up to table immediately. New-level maxima are 5.24 / 7.28 / 11.52 times stake, including five orbs and all finds. Existing saved boards use their committed achievable ceiling. Maxima are per level, not cumulative or guaranteed extraction.",
+    "outcomePresentation": "Mine hits play an on-board red burst, then show a card over the board saying YOU HIT A MINE and offering Try again. Try again returns to entry selection without charging; pressing Enter mine pays the selected simulated stake and starts the next run immediately. Only the hit mine is shown in red; all unopened resonance sources use the same hollow rings (\u25ce), purple outside and red inside with blue tile shading, hiding their mine/orb outcome even after failure. Recovered orbs retain their filled-ring symbol (\u25c9). The board and result mini-board use the same distinction. After 650 ms the mine card appears automatically; movement keys do not dismiss it or start another run. Every orb, including the first on each level, shimmers without blocking movement or opening a popup. Clear-ground/orb progress and the Go deeper button show the descent requirements. RF settles once at the game action, independently of animation or acknowledgement. Reduced motion uses static marks. The failed-run sidebar shows the lost haul plus a separate + [paid stake] RF entry line. Entry is informational and is never charged or added to the loss pool a second time; old results without a stored stake use their original 1 RF entry.",
+    "tileArtworkLayout": "Preserve the entire canonical square frame in a dedicated lower tile region, with the clue in a separate strip above it. Native artwork is 16x16; the local canvas draws at 2x (32x32). SDK optional renderer allows up to 8x (128x128), not a mandatory display size.",
+    "orbsPerLevel": 5,
+    "minesPerLevel": 5,
+    "stakeRule": "Show exactly eight whole-RF choices: 1, 2, 5, 10, 20, 50, 80 and 100. Keep unavailable choices visible but disabled. Choices are capped by both wallet and cleanRoundDown(availableRF / (24.04 * 500)). Round down by 1 below 10, by 5 for 10\u201349, by 10 for 50\u201399, continuing by magnitude. Admission rechecks the cap atomically; selected stake scales every reward and remains locked through all three levels.",
+    "responsiveLayout": "Desktop/landscape use the 960x640 SDK frame. Portrait phones up to 600px show the same logical 10x8 board transposed to 8x10, with information and directional controls below. Movement and directional flags follow visible directions. Rotation never rerolls the board or changes RF; the portrait page scrolls vertically as needed.",
+    "idleTimeout": {
+      "warningAfterSeconds": 540,
+      "expireAfterSeconds": 600,
+      "activity": "Entry, accepted steps/reveals, flag changes, descent and Continue playing reset the deadline. Invalid/no-op input, animations, menus and refreshes do not.",
+      "settlement": "End the run, refund exactly the original entry to its Friend wallet, discard the entire haul into the shared pool and release unused current/future backing. Never pay both haul and refund. Mine losses are final and cannot later be refunded.",
+      "boundary": "Expiry at or after the saved deadline takes priority over any command, including extraction or descent. Timer and command processing use one idempotent settlement path.",
+      "presentation": "At nine minutes offer Continue playing or extraction. At ten minutes close stale menus/confirmations and show returned entry and discarded haul.",
+      "clock": "Local computer clock only. Check every second, on focus/visibility changes, before gameplay actions and on load. Suspended/closed browsers settle on resume/reopen. Future shared play requires a trusted clock and atomic ledger."
+    },
+    "visualStyle": "Locally bundled Silkscreen title and short camp catchphrase, plus a 16x16 SVG board-icon family; crisp interface borders and off-white readable type. Original blue-green game/page background, rounded board surround and softly bevelled shaded covered tiles; darker revealed tiles. Green actions, purple orb accents and red mine signals. Unopened sources use purple outer/red inner pixel rings on blue tiles. Centre recovered orbs when unoccupied; keep occupied orb markers above the canonical Friend. Place ground-find icons along the bottom directly beneath the top-left clue number, with the RF amount beside each icon. Canonical Friend pixels stay unchanged; square-ended pickup rays and mine effects respect reduced motion. No external fonts or art requests.",
+    "submissionPersistence": "In-memory only, isolated by verified selected Friend session. Reload, account/network/Friend changes and disconnect discard progress. No access to offline localStorage; existing offline saves remain on localhost:4173."
+  }
+}

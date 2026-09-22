@@ -1,0 +1,47 @@
+Deep Dig Evaluation Terms 1.0
+
+Copyright (c) 2026 chimph, to the extent copyright subsists in the covered
+original material. All rights reserved except as expressly permitted below.
+
+Scope
+These terms apply only to the new original material identified in the root
+LICENSE. They do not restrict previously granted Apache-2.0 permissions,
+FriendSDK, third-party works, separately licensed material, or rights that
+applicable law grants independently of a licence.
+
+Permission
+You may inspect, download and make copies of the covered material to build,
+run, privately modify and test Deep Dig for personal non-commercial use,
+security review, or evaluation and judging of this project, including the
+Rare Friends Vibeathon. A business or competition organiser may perform
+internal evaluation without obtaining an additional commercial licence.
+You may share evaluation copies within your review team for these purposes,
+provided these notices and terms are retained.
+
+You may play the builder-authorised hosted preview and publish screenshots,
+recordings and commentary about the game, including monetised reviews.
+GitHub's platform rights to view and fork public repositories are unaffected;
+those rights do not create a separate commercial reuse permission here.
+
+Other uses
+Except as permitted above, you need separate written permission from chimph
+to commercially exploit, sell, sublicense, redistribute, publicly host or
+incorporate covered material into another product or service. Private
+modification for evaluation does not permit distribution of a modified game.
+
+These restrictions apply only to the covered new material. You may continue
+to use and redistribute Apache-2.0 material under Apache-2.0, including for
+commercial purposes, without obtaining permission under these terms.
+
+Ownership and notices
+Keep applicable copyright, attribution and licence notices with copies.
+No ownership is assigned, no exclusivity is promised, and no trademark or
+endorsement rights are granted. Other rights in covered material are reserved.
+Contact: https://x.com/intocryptoast
+
+Disclaimer
+To the extent permitted by applicable law, the covered material is provided
+as is, without warranties, including merchantability, fitness for a particular
+purpose or non-infringement. The licensor is not liable for loss or damage
+arising from use of the material to the extent such liability may lawfully
+be excluded. Nothing excludes liability that cannot legally be excluded.
