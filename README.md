@@ -8,10 +8,6 @@ Walk your Rare Friend through a resonance minefield, collect simulated RF, and d
 
 Builder: **chimph** · Contact: **[@intocryptoast on X](https://x.com/intocryptoast)**.
 
-## Licensing
-
-FriendSDK and previously published Apache-licensed material retain their existing permissions. Only new original Deep Dig material is subject to the [evaluation terms](LICENSES/Deep-Dig-Evaluation.txt): inspection, private testing and judging are allowed; commercial reuse and public hosting of covered new material require permission. These terms do not revoke rights in earlier releases. See the [licensing map](LICENSE).
-
 ## Wallet-connected preview
 
 Requires Node.js 22+, npm and a browser wallet holding a Rare Friends Generations NFT (generation 1 or higher) on Robinhood mainnet (chain 4663).
