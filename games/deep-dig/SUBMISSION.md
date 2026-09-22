@@ -13,7 +13,7 @@ Status: public simulated preview and clean source published. No Vibeathon submis
 - Public playable preview: [Deep Dig](https://chimph.github.io/rf-deep-dig/). Wallet connection and an eligible Generations NFT on Robinhood are required; all RF is simulated.
 - Stack: React 19, TypeScript, FriendSDK **0.1.2**, based on upstream commit `762d6f58a73ace723f7f82dc1a61bfa036c21edc`, with a local read-only Friend picker extension (menu shortcut, canonical art cards and eight-ID pages).
 
-Licensing: the [licensing map](../../LICENSE) preserves FriendSDK and prior Apache-2.0 permissions. New original Deep Dig material has [evaluation terms](../../LICENSES/Deep-Dig-Evaluation.txt) allowing inspection, private testing and competition judging; these do not grant commercial reuse rights for covered new material. No ownership transfer or exclusivity is offered.
+Licensing: see the [project terms](../../LICENSE) and [evaluation permissions](../../LICENSES/Deep-Dig-Evaluation.txt). Inspection, private testing and competition judging are allowed for covered Deep Dig material; commercial reuse requires separate permission. FriendSDK and third-party assets retain their own licences. No ownership transfer or exclusivity is offered.
 
 ## Run locally
 

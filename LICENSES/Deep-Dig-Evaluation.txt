@@ -4,10 +4,10 @@ Copyright (c) 2026 chimph, to the extent copyright subsists in the covered
 original material. All rights reserved except as expressly permitted below.
 
 Scope
-These terms apply only to the new original material identified in the root
-LICENSE. They do not restrict previously granted Apache-2.0 permissions,
-FriendSDK, third-party works, separately licensed material, or rights that
-applicable law grants independently of a licence.
+These terms apply only to the original contributions identified in the root
+LICENSE. They do not restrict permissions available under another applicable
+licence, FriendSDK, third-party works, separately licensed material, or rights
+that applicable law grants independently of a licence.
 
 Permission
 You may inspect, download and make copies of the covered material to build,
@@ -29,9 +29,9 @@ to commercially exploit, sell, sublicense, redistribute, publicly host or
 incorporate covered material into another product or service. Private
 modification for evaluation does not permit distribution of a modified game.
 
-These restrictions apply only to the covered new material. You may continue
-to use and redistribute Apache-2.0 material under Apache-2.0, including for
-commercial purposes, without obtaining permission under these terms.
+These restrictions apply only to the covered material. Apache-2.0 material
+may be used and redistributed under Apache-2.0 without obtaining permission
+under these evaluation terms.
 
 Ownership and notices
 Keep applicable copyright, attribution and licence notices with copies.

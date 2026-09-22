@@ -8,4 +8,4 @@ Use only the builder's approved public alias `chimph` and X contact `@intocrypto
 
 Run npm test, npm run typecheck, npm run check:games and relevant Deep Dig browser checks. Mock wallets are for internal automated tests only, never a deliverable playable gate bypass. Build the public simulated preview with npm run build:deep-dig:submission; publish only games/deep-dig/.friendsdk. Do not deploy from PR automation. Production real-RF publication requires separate Rare Friends review and user authorization.
 
-Read LICENSE before changing licensing. Preserve prior Apache-2.0 rights and all third-party terms. New original Deep Dig material follows LICENSES/Deep-Dig-Evaluation.txt unless the builder explicitly chooses other terms; FriendSDK runtime remains Apache-2.0. A new repository does not revoke rights in earlier releases.
+Read LICENSE before changing licensing. Respect all applicable licences and third-party terms. New original Deep Dig contributions follow LICENSES/Deep-Dig-Evaluation.txt unless the builder explicitly chooses other terms; FriendSDK runtime remains Apache-2.0.

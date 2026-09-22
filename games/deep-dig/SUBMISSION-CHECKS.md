@@ -50,7 +50,3 @@ Public URL: https://chimph.github.io/rf-deep-dig/ (HTTPS enforced).
 All nine hosted static assets matched the CI-tested Pages artifact byte-for-byte, including the orb tab icon. On desktop (1100px) and portrait touch (390px), the actual unmodified hosted page showed the missing-wallet gate without mounting gameplay. Separate isolated browser contexts using internal wallet/RPC fixtures verified artwork, fonts, fresh eligibility reads, sandbox restrictions, default sound on, saved mute after refresh, entry, extraction and cancellation on network changes against the hosted bundle, with no signing requests. These mocked gameplay checks do not claim to verify the builder's real wallet.
 
 The Pages workflow is manual-only and publishes only the simulated wallet build. Pushes and pull requests run checks without deploying. Subsequent documentation-only changes do not change the deployed game assets.
-
-## Repository transition
-
-RF Deep Dig starts from previously verified source `2d5466a118cb93bf1f5c6160424cb98e9a2a25ec`, with licensing, contact and repository documentation changes. The original source's Apache permissions remain intact as explained in the root LICENSE. No gameplay, build scripts or browser-save keys changed in this transition. Use the new preview URL above; the previous repository has been made private.
