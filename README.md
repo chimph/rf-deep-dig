@@ -4,7 +4,7 @@ Walk your Rare Friend through a resonance minefield, collect simulated RF, and d
 
 **All RF is simulated. No real purchases, payouts, signatures or transactions.**
 
-**[Play the public simulated preview](https://chimph.github.io/rf-deep-dig/)** · [Source](https://github.com/chimph/rf-deep-dig)
+**[Play the public simulated preview](https://chimph.github.io/rf-deep-dig/)** · [Source](https://github.com/chimph/rf-deep-dig) · [Vibeathon entry](https://github.com/spokesz/rarefriends-vibeathon/pull/30)
 
 Builder: **chimph** · Contact: **[@intocryptoast on X](https://x.com/intocryptoast)**.
 

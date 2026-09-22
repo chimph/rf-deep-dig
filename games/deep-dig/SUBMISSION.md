@@ -1,13 +1,13 @@
-# Deep Dig — Vibeathon submission draft
+# Deep Dig — Vibeathon submission
 
-Status: public simulated preview and clean source published. No Vibeathon submission PR, real-RF funding, signatures, transactions or official production release have been performed.
+Status: submitted for review in [Vibeathon PR #30](https://github.com/spokesz/rarefriends-vibeathon/pull/30) under **Economy Potential**. The public preview remains fully simulated; no real-RF funding, signatures, transactions or official production release have been performed.
 
-## Entry details to complete before submission
+## Entry details
 
 - Project: **Deep Dig**.
 - Builder: **chimph**.
 - Contact: **[@intocryptoast on X](https://x.com/intocryptoast)**.
-- Suggested category: **Economy Potential**; builder to confirm.
+- Category: **Economy Potential**.
 - One sentence: Walk your selected Rare Friend through a resonance minefield, collect simulated RF and decide whether to extract your haul or risk another fully backed depth.
 - Source repository: [chimph/rf-deep-dig](https://github.com/chimph/rf-deep-dig).
 - Public playable preview: [Deep Dig](https://chimph.github.io/rf-deep-dig/). Wallet connection and an eligible Generations NFT on Robinhood are required; all RF is simulated.
@@ -99,4 +99,4 @@ See [SUBMISSION-CHECKS.md](SUBMISSION-CHECKS.md) for exact commands, tested iden
 
 The current [Vibeathon requirements](https://github.com/spokesz/rarefriends-vibeathon/blob/main/README.md) request a PR adding `submissions/deep-dig/README.md`, a source repository, public playable game URL, builder details, controls/economics, credits and check results. Deadline: **September 30, 2026**, exact cutoff/timezone **TBA** at the review date. Simulated purchases and rewards are explicitly allowed. [FriendSDK release notes](https://github.com/spokesz/friendsdk/blob/762d6f58a73ace723f7f82dc1a61bfa036c21edc/CHANGELOG.md) and [runtime limitations](https://github.com/spokesz/friendsdk/blob/762d6f58a73ace723f7f82dc1a61bfa036c21edc/HOST_INTEGRATION.md) informed this integration.
 
-This draft is **not yet submit-ready**: final actual-wallet smoke verification and category confirmation remain outstanding. Public source and the playable preview are available at the links above. Opening the Vibeathon submission PR still requires a separate user request. Official real-RF production publication is a later Rare Friends review.
+The simulated entry is [submitted for review](https://github.com/spokesz/rarefriends-vibeathon/pull/30); submission is not acceptance or approval for real-RF play. A complete manual eligible-wallet playthrough on the new preview URL remains unrecorded and is disclosed in the entry. Automated checks and their scope are documented above. Official real-RF production publication remains a later Rare Friends review.

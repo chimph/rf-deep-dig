@@ -17,7 +17,7 @@ Open **http://localhost:4175** in a wallet-enabled browser. Connect a wallet own
 
 **Submission progress lasts only for the selected session.** Refresh, disconnect or changes to account/network/Friend discard that session, including its board and balance. Offline saves are never imported or written. Desktop uses 960×640; portrait content scrolls inside the runtime frame. Browser-wallet support comes from the SDK; WalletConnect and native wallet deep links are not supplied.
 
-`npm run build:deep-dig:submission` produces local static files in `.friendsdk/`. Neither command accepts a deployment flag. See [submission draft and capability decisions](SUBMISSION.md) and [integration verification](SUBMISSION-CHECKS.md). The [public wallet-connected simulation](https://chimph.github.io/rf-deep-dig/) is hosted on GitHub Pages. No Vibeathon entry or real-RF release has been submitted.
+`npm run build:deep-dig:submission` produces local static files in `.friendsdk/`. Neither command accepts a deployment flag. See [submission draft and capability decisions](SUBMISSION.md) and [integration verification](SUBMISSION-CHECKS.md). The [public wallet-connected simulation](https://chimph.github.io/rf-deep-dig/) is hosted on GitHub Pages. The [Vibeathon entry](https://github.com/spokesz/rarefriends-vibeathon/pull/30) is submitted for review. No real-RF release has been performed.
 
 ## Run on computer
 
