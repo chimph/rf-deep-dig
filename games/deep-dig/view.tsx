@@ -224,7 +224,6 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
   const boardFriend = mineResult ? BigInt(state.result!.friend) : friendId;
   const statusText = error || moveHint || (flagDirection ? touchControls ? 'Choose a direction to flag · tap flag again to cancel.' : 'Choose a direction to flag · F or Esc cancels.' : '');
   const cleared = r ? clearedCount(r) : 0;
-  const range = lootRange(displayDepth, stake);
   const orbRewardAt = (depth: number) => r?.depth === depth ? runMysteryReward(r) : state.result?.depth === depth ? state.result.orbPrize ?? mysteryReward(depth, stake) : mysteryReward(depth, stake);
   const levelMaximums = Array.from({ length: MAX_DEPTH }, (_, i) => { const depth = i + 1; return r?.depth === depth ? actualLevelMaximum(r) : state.result?.depth === depth && state.result.maximum !== undefined ? state.result.maximum : maxReserve(depth, stake); });
   const totalMaximum = levelMaximums.reduce((total, maximum) => total + maximum, 0n);
@@ -297,13 +296,12 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
       </div>
       </div>}
       <div className="reward-summary">
-      <div className="reward-offer" data-testid="reward-offer"><span>Ground finds <b>{money(range.min)}–{money(range.max)} RF</b></span><span>Each orb <b>{money(orbRewardAt(displayDepth))} RF</b></span></div>
       <div className="level-rewards">
-        <table className="level-budgets" aria-label="Rewards per level"><colgroup><col /><col /><col /><col /></colgroup><thead><tr><th scope="col">Level</th><th scope="col">Ground finds</th><th scope="col">Each orb</th><th scope="col">Up to</th></tr></thead><tbody>{Array.from({ length: MAX_DEPTH }, (_, i) => i + 1).map(depth => {
+        <table className="level-budgets" aria-label="Rewards per level"><caption>RF Rewards</caption><colgroup><col /><col /><col /><col /></colgroup><thead><tr><th scope="col">Level</th><th scope="col">Ground finds</th><th scope="col">Each orb</th><th scope="col">Up to</th></tr></thead><tbody>{Array.from({ length: MAX_DEPTH }, (_, i) => i + 1).map(depth => {
           const maximum = levelMaximums[depth - 1], funded = r ? depth <= r.depth || canFundNext(state) : state.result ? true : maxPoolStake(state) >= stake;
           const ground = lootRange(depth, stake);
-          return <tr key={depth} data-testid={`level-budget-${depth}`} data-funded={funded} className={r?.depth === depth ? 'current-level' : ''} aria-current={r?.depth === depth ? 'step' : undefined}><th scope="row">{depth}</th><td>{money(ground.min)}–{money(ground.max)} RF</td><td>{money(orbRewardAt(depth))} RF</td><td>{money(maximum)} RF{!funded && <span className="pool-shortfall">Pool too low</span>}</td></tr>;
-        })}</tbody><tfoot><tr data-testid="level-budget-total"><th scope="row" colSpan={3}>MAX TOTAL</th><td>{money(totalMaximum)} RF</td></tr></tfoot></table>
+          return <tr key={depth} data-testid={`level-budget-${depth}`} data-funded={funded} className={r?.depth === depth ? 'current-level' : ''} aria-current={r?.depth === depth ? 'step' : undefined}><th scope="row">{depth}</th><td>{money(ground.min)}–{money(ground.max)}</td><td>{money(orbRewardAt(depth))}</td><td>{money(maximum)}{!funded && <span className="pool-shortfall">Pool too low</span>}</td></tr>;
+        })}</tbody><tfoot><tr data-testid="level-budget-total"><th scope="row" colSpan={3}>MAX TOTAL</th><td>{money(totalMaximum)}</td></tr></tfoot></table>
       </div>
       </div>
       <div className="entry-controls">

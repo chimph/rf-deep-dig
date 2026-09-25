@@ -31,21 +31,22 @@ async function checkLevelRewards(page, payouts) {
   assert.equal(await page.locator('.global-pot,[data-testid="pool"]').count(), 0, 'global pot display is removed');
   assert.doesNotMatch(await page.locator('.dig').innerText(), /GLOBAL POT/i);
   assert.equal(await table.count(), 1);
+  assert.equal(await page.getByTestId('reward-offer').count(), 0, 'rewards appear once in the level table');
   assert.deepEqual((await table.locator('thead th').allTextContents()).map(text => text.trim()), ['Level', 'Ground finds', 'Each orb', 'Up to'], 'reward table distinguishes ground finds, orbs and the level maximum');
-  assert.equal(await table.locator('caption').count(), 0);
+  assert.equal(await table.locator('caption').innerText(), 'RF Rewards');
   assert.doesNotMatch(await panel.innerText(), /%|pot size/i, 'level rewards contain no pot percentages or explanation');
-  assert.equal(parseShownRF(await page.getByTestId('level-budget-total').locator('td').innerText()), payouts.reduce((n, value) => n + parseShownRF(value), 0n), 'total adds the displayed level maximums at the selected stake');
+  assert.equal(parseShownRF(`${await page.getByTestId('level-budget-total').locator('td').innerText()} RF`), payouts.reduce((n, value) => n + parseShownRF(value), 0n), 'total adds the displayed level maximums at the selected stake');
   for (let i = 0; i < payouts.length; i++) {
     const row = page.getByTestId(`level-budget-${i + 1}`);
     assert.equal(await row.locator('td').count(), 3);
-    const range = (await row.locator('td').first().innerText()).replace(/ RF$/, '').split('–');
+    const range = (await row.locator('td').first().innerText()).split('–');
     assert.deepEqual(range.map(value => parseShownRF(`${value} RF`)), [BigInt(i + 1)*stake/100n, BigInt(i + 1)*3n*stake/100n], `depth ${i + 1} shows the ground-find range at the selected or saved stake`);
     const orbPrize = r?.depth === i + 1 ? r.caches.filter(c=>c.kind==='mystery').reduce((max,c)=>amount(c.loot)>max?amount(c.loot):max,0n) : s?.result?.depth === i + 1 && s.result.orbPrize ? BigInt(s.result.orbPrize.$rf) : [100n,136n,216n][i]*stake/100n;
-    assert.equal(parseShownRF(await row.locator('td').nth(1).innerText()), orbPrize, `depth ${i + 1} shows its per-orb payout at the selected or saved stake`);
+    assert.equal(parseShownRF(`${await row.locator('td').nth(1).innerText()} RF`), orbPrize, `depth ${i + 1} shows its per-orb payout at the selected or saved stake`);
     const payout = await row.locator('td').last().evaluate(node => {
       const copy = node.cloneNode(true); copy.querySelectorAll('.pool-shortfall').forEach(warning => warning.remove()); return copy.textContent.trim();
     });
-    assert.equal(parseShownRF(payout), parseShownRF(payouts[i]), `depth ${i + 1} retains its exact RF maximum`);
+    assert.equal(parseShownRF(`${payout} RF`), parseShownRF(payouts[i]), `depth ${i + 1} retains its exact RF maximum`);
   }
 }
 function route(run, goal) {
@@ -226,8 +227,6 @@ try {
     for (const amount of [50,80,100]) { assert.equal(await button(`Stake ${amount} RF`).isVisible(), true); assert.equal(await button(`Stake ${amount} RF`).isEnabled(), false); }
     await button('Stake 5 RF').click();
     await checkLevelRewards(page,['26.2 RF','36.4 RF','57.6 RF']);
-    assert.match(await page.getByTestId('reward-offer').innerText(),/Each orb\s+5 RF/);
-    assert.match(await page.getByTestId('reward-offer').innerText(),/0\.05–0\.15 RF/);
     assert.equal(await page.getByTestId('balance').textContent(),'20 RF');
     await page.locator('.rf-game-frame').screenshot({path:resolve(`work/deep-dig-checks/stakes-${width}.png`)});
     await button('Stake 1 RF').click();
@@ -236,7 +235,7 @@ try {
     await enter(); assert.equal(await page.getByTestId('balance').textContent(), '19 RF');
     await checkPot(1_000_001n * RF);
     const committed=await state(),mines=committed.run.hazards.filter(Boolean).length;
-    assert.equal(mines,5);assert.equal(committed.run.hazards.length,10);assert.match(await page.locator('.board-counter').innerText(),/ORBS FOUND: 0\/5/);assert.doesNotMatch(await page.getByTestId('reward-offer').innerText(),/%|odds/i);
+    assert.equal(mines,5);assert.equal(committed.run.hazards.length,10);assert.match(await page.locator('.board-counter').innerText(),/ORBS FOUND: 0\/5/);assert.doesNotMatch(await page.getByRole('table', {name:'Rewards per level'}).innerText(),/%|odds/i);
     assert.equal(await page.locator('.stake-picker').count(),0);
     assert.equal(amount(committed.run.future),1880n*RF/100n);
     await checkLevelRewards(page);
@@ -616,13 +615,13 @@ try {
     old.pool.$rf=(BigInt(old.pool.$rf)-amount(r.caches.flatMap(c=>c.loot))).toString();
     await page.evaluate(({ key, old }) => localStorage.setItem(key, JSON.stringify(old)), { key: KEY, old }); await page.reload();
     await page.locator('.dig').waitFor();
-    assert.match(await page.getByTestId('reward-offer').innerText(), /0\.8 RF/);
+    assert.match(await page.getByTestId('level-budget-1').locator('td').nth(1).innerText(), /^0\.8$/);
     await checkLevelRewards(page);
     assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)), KEY), old, 'reload preserves the old board, balances and reserved prizes');
     await page.getByRole('button', { name: /^Extract & finish/ }).click();
     await page.getByRole('button', { name: 'Extract and return to camp', exact: true }).click();
     await page.getByRole('button', { name: 'Enter mine 1 sim RF ↘', exact: true }).click();
-    assert.match(await page.getByTestId('reward-offer').innerText(), /Each orb\s+1 RF/);
+    assert.match(await page.getByTestId('level-budget-1').locator('td').nth(1).innerText(), /^1$/);
     await checkLevelRewards(page);
     assert.equal(total(await page.evaluate(key => JSON.parse(localStorage.getItem(key)), KEY)), 1_000_040n * RF);
     await context.close(); console.log('PASS saved v4 reward compatibility: old boards quote backed 0.80 RF prizes; new boards quote 1 RF without resetting balances.');
