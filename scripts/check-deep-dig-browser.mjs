@@ -17,27 +17,30 @@ const globalPot = s => amount(s.run?.future ?? []) + BigInt(s.pool.$rf) + amount
 const parseShownRF = text => { const match = text.trim().match(/^(\d+)(?:\.(\d{1,18}))?\s*RF$/); assert.ok(match, `RF display is numeric: ${text}`); return BigInt(match[1]) * RF + BigInt((match[2] ?? '').padEnd(18, '0')); };
 const total = s => Object.values(s.wallets).reduce((n, v) => n + BigInt(v.$rf), 0n) + amount(s.run?.future ?? []) + BigInt(s.pool.$rf) + amount(s.run?.bag ?? []) + amount(s.run?.caches.filter(c => !c.opened).flatMap(c => c.loot) ?? []);
 async function checkLevelRewards(page, payouts) {
+  const s = await page.evaluate(key=>JSON.parse(localStorage.getItem(key)), KEY), r=s?.run;
+  const selected = await page.locator('.stake-options button[aria-pressed="true"]').allTextContents();
+  const stake = r?.stake ? BigInt(r.stake.$rf) : s?.result?.stake ? BigInt(s.result.stake.$rf) : parseShownRF(`${selected[0] ?? '1'} RF`);
   if (!payouts) {
-    const s = await page.evaluate(key=>JSON.parse(localStorage.getItem(key)), KEY), r=s?.run;
-    const stake=r?.stake?BigInt(r.stake.$rf)/RF:1n;
     payouts=[524n,728n,1152n].map((base,i)=>{
-      const value=r?.depth===i+1?amount(r.caches.filter(c=>c.kind==='ordinary').flatMap(c=>c.loot))+BigInt(r.hazards.filter(h=>!h).length)*r.caches.filter(c=>c.kind==='mystery').reduce((max,c)=>amount(c.loot)>max?amount(c.loot):max,0n):base*RF/100n*stake;
+      const value=r?.depth===i+1?amount(r.caches.filter(c=>c.kind==='ordinary').flatMap(c=>c.loot))+BigInt(r.hazards.filter(h=>!h).length)*r.caches.filter(c=>c.kind==='mystery').reduce((max,c)=>amount(c.loot)>max?amount(c.loot):max,0n):base*stake/100n;
       return `${Number(value/(RF/100n))/100} RF`;
     });
   }
-  const panel = page.locator('.level-rewards'), table = page.getByRole('table', { name: 'Maximum rewards per level' });
+  const panel = page.locator('.level-rewards'), table = page.getByRole('table', { name: 'Rewards per level' });
   assert.equal(await panel.count(), 1);
   assert.equal(await page.locator('.global-pot,[data-testid="pool"]').count(), 0, 'global pot display is removed');
   assert.doesNotMatch(await page.locator('.dig').innerText(), /GLOBAL POT/i);
   assert.equal(await table.count(), 1);
-  assert.deepEqual((await table.locator('thead th').allTextContents()).map(text => text.trim()), ['Level', 'Up to'], 'reward table has no pot-share column');
+  assert.deepEqual((await table.locator('thead th').allTextContents()).map(text => text.trim()), ['Level', 'Each orb', 'Up to'], 'reward table distinguishes each orb from the level maximum');
   assert.equal(await table.locator('caption').count(), 0);
   assert.doesNotMatch(await panel.innerText(), /%|pot size/i, 'level rewards contain no pot percentages or explanation');
   assert.equal(parseShownRF(await page.getByTestId('level-budget-total').locator('td').innerText()), payouts.reduce((n, value) => n + parseShownRF(value), 0n), 'total adds the displayed level maximums at the selected stake');
   for (let i = 0; i < payouts.length; i++) {
     const row = page.getByTestId(`level-budget-${i + 1}`);
-    assert.equal(await row.locator('td').count(), 1);
-    const payout = await row.locator('td').evaluate(node => {
+    assert.equal(await row.locator('td').count(), 2);
+    const orbPrize = r?.depth === i + 1 ? r.caches.filter(c=>c.kind==='mystery').reduce((max,c)=>amount(c.loot)>max?amount(c.loot):max,0n) : s?.result?.depth === i + 1 && s.result.orbPrize ? BigInt(s.result.orbPrize.$rf) : [100n,136n,216n][i]*stake/100n;
+    assert.equal(parseShownRF(await row.locator('td').first().innerText()), orbPrize, `depth ${i + 1} shows its per-orb payout at the selected or saved stake`);
+    const payout = await row.locator('td').last().evaluate(node => {
       const copy = node.cloneNode(true); copy.querySelectorAll('.pool-shortfall').forEach(warning => warning.remove()); return copy.textContent.trim();
     });
     assert.equal(parseShownRF(payout), parseShownRF(payouts[i]), `depth ${i + 1} retains its exact RF maximum`);
