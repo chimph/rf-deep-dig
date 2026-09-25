@@ -143,7 +143,7 @@ The enlarged grid uses 57.5% of the container width, with the same 3% spacing at
 
 The **TOTAL** row adds the three displayed level maximums (24.04 RF for a 1 RF stake, 120.20 RF for a 5 RF stake). It is the maximum gross reward across all three levels, not guaranteed winnings or profit after entry.
 
-Ground finds and Each orb show the current depth’s rewards above the level table. The table lists Each orb alongside the Up to maximum for every level: 1×, 1.36× and 2.16× the selected stake per orb. Amounts update with the entry stake; existing saved boards retain their committed prizes.
+Ground finds and Each orb show the current depth’s rewards above the level table. The table lists Ground finds, Each orb and the Up to maximum for every level. Ground-find ranges are 0.01–0.03×, 0.02–0.06× and 0.03–0.09× the selected stake; each orb pays 1×, 1.36× and 2.16× respectively. Amounts update with the entry stake; existing saved boards retain their committed prizes.
 
 Before entry, the reward summary and level table sit at the top of the side panel. Stake choices sit directly above Enter mine, and selecting a stake updates the preview immediately.
 

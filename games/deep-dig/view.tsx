@@ -299,10 +299,11 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
       <div className="reward-summary">
       <div className="reward-offer" data-testid="reward-offer"><span>Ground finds <b>{money(range.min)}–{money(range.max)} RF</b></span><span>Each orb <b>{money(orbRewardAt(displayDepth))} RF</b></span></div>
       <div className="level-rewards">
-        <table className="level-budgets" aria-label="Rewards per level"><colgroup><col /><col /><col /></colgroup><thead><tr><th scope="col">Level</th><th scope="col">Each orb</th><th scope="col">Up to</th></tr></thead><tbody>{Array.from({ length: MAX_DEPTH }, (_, i) => i + 1).map(depth => {
+        <table className="level-budgets" aria-label="Rewards per level"><colgroup><col /><col /><col /><col /></colgroup><thead><tr><th scope="col">Level</th><th scope="col">Ground finds</th><th scope="col">Each orb</th><th scope="col">Up to</th></tr></thead><tbody>{Array.from({ length: MAX_DEPTH }, (_, i) => i + 1).map(depth => {
           const maximum = levelMaximums[depth - 1], funded = r ? depth <= r.depth || canFundNext(state) : state.result ? true : maxPoolStake(state) >= stake;
-          return <tr key={depth} data-testid={`level-budget-${depth}`} data-funded={funded} className={r?.depth === depth ? 'current-level' : ''} aria-current={r?.depth === depth ? 'step' : undefined}><th scope="row">{depth}</th><td>{money(orbRewardAt(depth))} RF</td><td>{money(maximum)} RF{!funded && <span className="pool-shortfall">Pool too low</span>}</td></tr>;
-        })}</tbody><tfoot><tr data-testid="level-budget-total"><th scope="row" colSpan={2}>MAX TOTAL</th><td>{money(totalMaximum)} RF</td></tr></tfoot></table>
+          const ground = lootRange(depth, stake);
+          return <tr key={depth} data-testid={`level-budget-${depth}`} data-funded={funded} className={r?.depth === depth ? 'current-level' : ''} aria-current={r?.depth === depth ? 'step' : undefined}><th scope="row">{depth}</th><td>{money(ground.min)}–{money(ground.max)} RF</td><td>{money(orbRewardAt(depth))} RF</td><td>{money(maximum)} RF{!funded && <span className="pool-shortfall">Pool too low</span>}</td></tr>;
+        })}</tbody><tfoot><tr data-testid="level-budget-total"><th scope="row" colSpan={3}>MAX TOTAL</th><td>{money(totalMaximum)} RF</td></tr></tfoot></table>
       </div>
       </div>
       <div className="entry-controls">

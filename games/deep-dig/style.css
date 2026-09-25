@@ -71,8 +71,10 @@
 .level-budgets caption{text-align:left;font:9px/1.4 monospace;letter-spacing:.7px;color:#8fa99c;margin-bottom:5px}
 .level-budgets th,.level-budgets td{padding:5px;text-align:right;font-weight:normal;border-bottom:1px solid #2e423d}
 .level-budgets tr>*:first-child{text-align:left}
-.level-budgets col:first-child{width:20%}
+.level-budgets col:first-child{width:12%}
 .level-budgets col:nth-child(2){width:38%}
+.level-budgets col:nth-child(3){width:24%}
+.level-budgets td{white-space:nowrap}
 .level-budgets thead{font-size:8px;color:#819d8f}
 .level-budgets tbody td{color:#e7e9de}
 .level-budgets .current-level{background:#243a32}
@@ -212,11 +214,11 @@
 .level-budgets th,.level-budgets td{padding:7px 5px}
 @container(max-width:800px){
  .dig-panel{gap:4px}
- .level-budgets th,.level-budgets td{padding:3px}
+ .level-budgets th,.level-budgets td{padding:3px 2px}
 }
 @container(max-width:520px){
  .dig-panel{gap:1px}
- .level-budgets th,.level-budgets td{padding:2px}
+ .level-budgets th,.level-budgets td{padding:2px 1px}
 }
 
 /* Keep find/orb rewards together with their level totals. */
