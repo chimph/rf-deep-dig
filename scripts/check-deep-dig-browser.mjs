@@ -532,6 +532,19 @@ try {
       for (let depth = 1; depth <= 3; depth++) {
         for (let i = 0; i < 80; i++) { const run = (await state()).run; if (!run.cells[i].mystery && !run.cells[i].revealed) await walkTo(i); }
         s = await state(); assert.equal(s.run.cells.filter(c => c.revealed && !c.mystery).length, 80 - s.run.mysteryCount);
+        if (depth === 3) {
+          const complete = page.getByRole('dialog', { name: 'Level 3 cleared!' });
+          await complete.waitFor();
+          assert.match(await complete.innerText(), /Congratulations! You uncovered all ordinary ground/);
+          assert.equal(await complete.getByRole('button').count(), 1, 'completion has only Continue');
+          assert.equal(s.run.cells.filter(c => c.mystery && c.revealed).length, 0, 'completion requires no orb');
+          await page.keyboard.press('ArrowRight'); await unchanged(s);
+          await bounds();
+          await complete.screenshot({ path: resolve(`work/deep-dig-checks/level-three-cleared-${width}.png`) });
+          await complete.getByRole('button', { name: 'Continue', exact: true }).click();
+          await unchanged(s);
+          assert.equal(await complete.count(), 0);
+        } else assert.equal(await page.getByRole('dialog', { name: 'Level 3 cleared!' }).count(), 0);
         if (depth === 1) {
           const edge = s.run.cells.findIndex((c, i) => !c.mystery && (i < 10 || i >= 70 || i % 10 === 0 || i % 10 === 9));
           assert.ok(edge >= 0); await walkTo(edge);
@@ -545,7 +558,7 @@ try {
           const win = s.run.cells.findIndex(c => c.mystery && !c.mine); assert.ok(win >= 0); await approach(win); await flag(win); await tap(win); await button('Risk this tile').click();
           assert.equal(await page.locator('.rf-frame-menu,.reveal-hit-area').count(), 0, 'orb unlocks descent without a guidance popup');
           assert.equal(await button('Go deeper Higher rewards ↘').isEnabled(), true);
-          const carried = (await state()).run.bag, bank = (await state()).wallets['7730'], potBeforeDescent = await ledgerPot(); await button('Go deeper Higher rewards ↘').click(); await button('Confirm preview').click();
+          const carried = (await state()).run.bag, bank = (await state()).wallets['7730'], potBeforeDescent = await ledgerPot(); await button('Go deeper Higher rewards ↘').click(); await button('Continue').click();
           s = await state(); assert.equal(s.run.depth, depth + 1); assert.deepEqual(s.run.bag, carried); assert.deepEqual(s.wallets['7730'], bank); assert.equal(total(s), 1_000_040n * RF); await checkPot(potBeforeDescent); await tap(34);
         }
       }

@@ -3,7 +3,8 @@ import type { GameComponentProps } from '@rarefriends/friendsdk/runtime';
 import { GameMenu } from '@rarefriends/friendsdk/frame';
 import { createFriendReader, type GenerationSprites } from '@rarefriends/friendsdk/sprites';
 import DeepDig from './view.js';
-import { initialSessionState, transition, expireIdle, topUpWallet, sum, money, type Command } from './engine.js';
+import DescendConfirmation from './descend-confirmation.js';
+import { initialSessionState, transition, expireIdle, topUpWallet, type Command } from './engine.js';
 import './submission.css';
 import './fonts/silkscreen-web.css';
 
@@ -82,11 +83,8 @@ function Session({ friendId, client, paused, openFriendSelector, friendArtwork, 
           dispatch={dispatch} request={request}
           reset={() => { if (!blocked.current) { commit(initialSessionState(friendId)); setConfirmation(null); setError(''); } }}
           topUp={() => { if (blocked.current) return false; commit(topUpWallet(current.current, String(friendId))); return true; }} />}
-      {confirmation && <GameMenu title="Descend with your haul?" onClose={() => setConfirmation(null)}
-        footer={<><button onClick={() => setConfirmation(null)}>Cancel</button><button onClick={() => { const command = confirmation; setConfirmation(null); dispatch(command); }}>Confirm preview</button></>}>
-        <p>{`Descend free to depth ${(state.run?.depth ?? 0) + 1}. Your entire ${money(sum(state.run?.bag ?? []))} RF haul remains at risk. Each new level has five orbs and five mines.`}</p>
-        <p>Uncollected rewards return to this session’s pool. All RF is simulated.</p>
-      </GameMenu>}
+      {confirmation && state.run && <DescendConfirmation run={state.run} onCancel={() => setConfirmation(null)}
+        onConfirm={() => { const command = confirmation; setConfirmation(null); dispatch(command); }} />}
     </div>
   </div>;
 }

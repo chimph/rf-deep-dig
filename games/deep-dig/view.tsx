@@ -49,7 +49,7 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
   }, []);
   const [portrait, setPortrait] = useState(() => matchMedia(PORTRAIT_QUERY).matches);
   useEffect(() => { const query = matchMedia(PORTRAIT_QUERY), update = () => { setPortrait(query.matches); cancelPress(); setFlagDirection(false); }; query.addEventListener('change', update); return () => query.removeEventListener('change', update); }, []);
-  const [menu, setMenu] = useState<'rules' | 'settings' | 'abandon' | 'reset' | 'extract' | null>(null);
+  const [menu, setMenu] = useState<'rules' | 'settings' | 'abandon' | 'reset' | 'extract' | 'complete' | null>(null);
   const [muted, setMuted] = useState(soundMuted), [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [riskCell, setRiskCell] = useState<number | null>(null);
   const [cursor, setCursor] = useState(34);
@@ -78,6 +78,7 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
   const previousSoundState = useRef(state);
   const previousHaul = useRef({ run: r?.id, bag });
   const previousOrbs = useRef({ run: r?.id, depth: r?.depth, count: r ? mysteryFound(r) : 0 });
+  const previousGround = useRef({ friendId, run: r?.id, depth: r?.depth, cleared: !!r && boardCleared(r) });
   useEffect(() => {
     const kit = createDeepDigSoundKit({ muted }); sound.current = kit;
     // Remembering "on" never bypasses the browser's user-gesture requirement.
@@ -92,6 +93,12 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
     q.addEventListener('change', change); return () => q.removeEventListener('change', change);
   }, []);
   useEffect(() => { setMenu(null); setRiskCell(null); setFlagDirection(false); setPickup(null); setReveal(null); setRevealReady(false); setCursor(34); setMoveHint(''); cancelPress(); }, [friendId, r?.depth, r?.id]);
+  useEffect(() => {
+    const previous = previousGround.current;
+    const cleared = !!r && boardCleared(r);
+    previousGround.current = { friendId, run: r?.id, depth: r?.depth, cleared };
+    if (r?.depth === MAX_DEPTH && previous.friendId === friendId && previous.run === r.id && previous.depth === r.depth && !previous.cleared && cleared) setMenu('complete');
+  }, [friendId, r]);
   useEffect(() => { if (blocked) { cancelPress(); setFlagDirection(false); } }, [blocked]);
   useEffect(() => {
     const previous = previousHaul.current;
@@ -289,7 +296,7 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
     <aside className="dig-panel">
       {(r || state.result) && <div className="run-overview">
       <div className="wallet-stats">
-        <div className={`bag stat${mineResult ? ' lost-haul' : ''}`}><span className="eyebrow">{mineResult ? 'LOST' : 'HAUL AT RISK'}</span><strong data-testid="bag">{money(mineResult ? state.result!.amount : bag)}<small> RF</small></strong>{mineResult && <span className="entry-loss" data-testid="entry-loss">+ {money(state.result!.stake ?? ENTRY)} RF entry</span>}</div>
+        <div className={`bag stat${mineResult ? ' lost-haul' : ''}`}><span className="eyebrow">{mineResult ? 'LOST' : 'YOUR HAUL'}</span><strong data-testid="bag">{money(mineResult ? state.result!.amount : bag)}<small> RF</small></strong>{mineResult && <span className="entry-loss" data-testid="entry-loss">+ {money(state.result!.stake ?? ENTRY)} RF entry</span>}</div>
       </div>
       <div className="progress">{r && <span>{cleared}/{SIZE - r.mysteryCount} tiles cleared</span>}
       <span className="board-counter">{r || state.result ? `ORBS FOUND: ${r ? mysteryFound(r) : cells.filter(c=>c.mystery&&c.revealed&&!c.mine).length}/${counts?.orbs ?? 5}` : 'ORBS FOUND: 0/5'}</span>
@@ -318,6 +325,10 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
     {idleWarning && r && !paused && !menu && riskCell === null && <GameMenu title="Still digging?" footer={<><button onClick={() => dispatch({ type: 'continue' })}>Continue playing</button><button className="rf-frame-primary" onClick={() => setMenu('extract')}>Extract {money(bag)} RF</button></>}>
       <p>Your run ends in <b data-testid="idle-countdown">{Math.floor(idleSeconds / 60)}:{String(idleSeconds % 60).padStart(2, '0')}</b> without activity.</p>
       <p>Your <b>{money(runStake(r))} RF entry</b> will be returned. Your <b>{money(bag)} RF unbanked haul</b> will be discarded.</p>
+    </GameMenu>}
+    {menu === 'complete' && r && <GameMenu title="Level 3 cleared!" footer={<button type="button" className="rf-frame-primary" onClick={() => setMenu(null)}>Continue</button>}>
+      <p>Congratulations! You uncovered all ordinary ground.</p>
+      <p>Your haul stays at risk until you extract.</p>
     </GameMenu>}
     {menu === 'rules' && <GameMenu title="How to play" onClose={() => setMenu(null)}>
       <div className="how-to-play">

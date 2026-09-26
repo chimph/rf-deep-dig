@@ -666,3 +666,9 @@
 @container(max-width:520px) { .session-note { min-height:14px; font-size:6px; } }
 @media(max-width:600px) and (orientation:portrait) { .session-note { left:16px; bottom:12px; min-height:28px; font-size:10px; } }
 .rf-game-frame .settings-button, .rf-game-frame .settings-button:hover:not(:disabled) { border:0; background:transparent; box-shadow:none; }
+.rf-frame-menu .descend-rewards { width:260px; max-width:100%; table-layout:auto; font:13px/1.4 monospace; }
+.rf-frame-menu .descend-rewards th,.rf-frame-menu .descend-rewards td { padding:10px 12px; }
+.rf-frame-menu .descend-rewards tr > :first-child { text-align:left; }
+.rf-frame-menu .descend-rewards tr > :last-child { text-align:right; }
+.descend-rewards thead { font-size:9px; }
+@media(max-width:600px) and (orientation:portrait) { .rf-frame-menu .descend-rewards { font-size:11px; } }
