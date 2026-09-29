@@ -11,7 +11,7 @@ Status: submitted for review in [Vibeathon PR #30](https://github.com/spokesz/ra
 - One sentence: Walk your selected Rare Friend through a resonance minefield, collect simulated RF and decide whether to extract your haul or risk another fully backed depth.
 - Source repository: [chimph/rf-deep-dig](https://github.com/chimph/rf-deep-dig).
 - Public playable preview: [Deep Dig](https://chimph.github.io/rf-deep-dig/). Wallet connection and an eligible Generations NFT on Robinhood are required; all RF is simulated.
-- Stack: React 19, TypeScript, FriendSDK **0.1.2**, based on upstream commit `762d6f58a73ace723f7f82dc1a61bfa036c21edc`, with a local read-only Friend picker extension (menu shortcut, canonical art cards and eight-ID pages).
+- Stack: React 19, TypeScript, FriendSDK **0.1.4**, based on upstream commit `ca3bf183b809ecf22d87c63d88ce03969a3f8da2`, with a local read-only Friend picker extension (menu shortcut, canonical art cards and eight-ID pages).
 
 Licensing: see the [project terms](../../LICENSE) and [evaluation permissions](../../LICENSES/Deep-Dig-Evaluation.txt). Inspection, private testing and competition judging are allowed for covered Deep Dig material; commercial reuse requires separate permission. FriendSDK and third-party assets retain their own licences. No ownership transfer or exclusivity is offered.
 
@@ -72,11 +72,11 @@ The [live-release plan](LIVE-RELEASE.md) describes the proposed authoritative bo
 
 ## Integration decision and capability limits
 
-Reviewed upstream release, runtime guide and submission requirements on **2026-09-22** before choosing this approach:
+Reviewed upstream v0.1.4 release, runtime guide and submission requirements on **2026-09-30** before choosing this approach:
 
 | Area | Implemented | Limitation / decision |
 |---|---|---|
-| Wallet and eligibility | v0.1.2 `GameHost`/`GameSession` with the documented local picker/artwork extension, fresh `readGenerationEligibility`, owner-filtered discovery, canonical NFT wallet resolution | No custom connector, collection scan, sample fallback or relaxed gate. Official runtime cancels old sessions on account/network/Friend changes. |
+| Wallet and eligibility | v0.1.4 `GameHost`/`GameSession` with the documented local picker/artwork extension, fresh `readGenerationEligibility`, owner-filtered discovery, canonical NFT wallet resolution | No custom connector, collection scan, sample fallback or relaxed gate. Official runtime cancels old sessions on account/network/Friend changes. |
 | Artwork | The host reuses gallery frames through the verified session handshake; `createFriendReader` remains a fallback if artwork was unavailable. The existing pixel renderer uses front/down idle frame, including SDK Colossus fallback | Public artwork reads are separate from ownership. Failed artwork reads block gameplay and offer retry. |
 | Economy | Existing pooled simulation, all three depths reserved at entry, unchanged RF prices/prizes/movement | Stock buy/play/settle/redeem cannot represent selectable stakes, multilevel haul, partial extraction, pooled lost-loot recovery or idle refunds. They are deliberately unused. |
 | Runtime balance | `client.read()` completes the standard session handshake | Stock fixed-table balance is unrelated and hidden by `host.css`, with a wallet-menu explanation. The Deep Dig header is the game's simulated balance. No two balances are synchronized or claimed equivalent. |
@@ -97,6 +97,6 @@ See [SUBMISSION-CHECKS.md](SUBMISSION-CHECKS.md) for exact commands, tested iden
 
 ## Submission readiness
 
-The current [Vibeathon requirements](https://github.com/spokesz/rarefriends-vibeathon/blob/main/README.md) request a PR adding `submissions/deep-dig/README.md`, a source repository, public playable game URL, builder details, controls/economics, credits and check results. Deadline: **September 30, 2026**, exact cutoff/timezone **TBA** at the review date. Simulated purchases and rewards are explicitly allowed. [FriendSDK release notes](https://github.com/spokesz/friendsdk/blob/762d6f58a73ace723f7f82dc1a61bfa036c21edc/CHANGELOG.md) and [runtime limitations](https://github.com/spokesz/friendsdk/blob/762d6f58a73ace723f7f82dc1a61bfa036c21edc/HOST_INTEGRATION.md) informed this integration.
+The current [Vibeathon requirements](https://github.com/spokesz/rarefriends-vibeathon/blob/main/README.md) request a PR adding `submissions/deep-dig/README.md`, a source repository, public playable game URL, builder details, controls/economics, credits and check results. Deadline: **September 30, 2026**, exact cutoff/timezone **TBA** at the review date. Simulated purchases and rewards are explicitly allowed. [FriendSDK release notes](https://github.com/spokesz/friendsdk/blob/ca3bf183b809ecf22d87c63d88ce03969a3f8da2/CHANGELOG.md) and [runtime limitations](https://github.com/spokesz/friendsdk/blob/ca3bf183b809ecf22d87c63d88ce03969a3f8da2/HOST_INTEGRATION.md) informed this integration.
 
 The simulated entry is [submitted for review](https://github.com/spokesz/rarefriends-vibeathon/pull/30); submission is not acceptance or approval for real-RF play. A complete manual eligible-wallet playthrough on the new preview URL remains unrecorded and is disclosed in the entry. Automated checks and their scope are documented above. Official real-RF production publication remains a later Rare Friends review.

@@ -16,6 +16,9 @@ const ABI = parseAbi([
   "function tokenBoundAccount(uint256 tokenId) view returns (address)",
 ]);
 
+const FIXTURE_BLOCK = GENERATION_SPRITE_MANIFEST.transferStartBlock + 100n;
+const FIXTURE_TRANSFER_BLOCK = GENERATION_SPRITE_MANIFEST.transferStartBlock + 1n;
+
 export async function installFixture(page, origin, { artworkCall, initialChain = "0x1237", ownedIds = [7730n] } = {}) {
   const ownerTokens = owner => owner.toLowerCase() === OWNER.toLowerCase() ? ownedIds : [3412n];
   const state = { mode: "eligible", requests: [], ownerReads: 0, hold: null, release: null, errors: [] };
@@ -56,15 +59,17 @@ export async function installFixture(page, origin, { artworkCall, initialChain =
     if (state.mode === "rpc-error") return { jsonrpc: "2.0", id: request.id, error: { code: -32001, message: "Fixture RPC unavailable" } };
     let result;
     if (request.method === "eth_chainId") result = "0x1237";
-    else if (request.method === "eth_blockNumber") result = "0x100";
+    else if (request.method === "eth_blockNumber") result = `0x${FIXTURE_BLOCK.toString(16)}`;
     else if (request.method === "eth_getLogs") {
       const filter = request.params[0];
+      assert.equal(BigInt(filter.fromBlock), GENERATION_SPRITE_MANIFEST.transferStartBlock);
+      assert.equal(BigInt(filter.toBlock), FIXTURE_BLOCK);
       assert.equal(filter.address.toLowerCase(), COLLECTION.toLowerCase());
       assert(filter.topics?.[1] || filter.topics?.[2], "Discovery must filter Transfer logs by the connected owner");
       const topic = filter.topics[2] || filter.topics[1];
       assert([padHex(OWNER, { size: 32 }), padHex(SECOND_OWNER, { size: 32 })].includes(topic.toLowerCase()), "Only owner-indexed history is allowed");
       const owner = `0x${topic.slice(-40)}`;
-      result = filter.topics[1] ? [] : ownerTokens(owner).map((id, index) => ({ address: COLLECTION, blockNumber: "0x10", blockHash: padHex("0x10", { size: 32 }),
+      result = filter.topics[1] ? [] : ownerTokens(owner).map((id, index) => ({ address: COLLECTION, blockNumber: `0x${FIXTURE_TRANSFER_BLOCK.toString(16)}`, blockHash: padHex("0x10", { size: 32 }),
         data: "0x", logIndex: `0x${index.toString(16)}`, transactionHash: padHex("0x1234", { size: 32 }), transactionIndex: "0x0", removed: false,
         topics: encodeEventTopics({ abi: ABI, eventName: "Transfer", args: { from: zeroAddress, to: owner, tokenId: id } }) }));
     } else if (request.method === "eth_call") {

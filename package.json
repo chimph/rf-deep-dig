@@ -1,6 +1,6 @@
 {
   "name": "@rarefriends/friendsdk",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Deep Dig simulated Rare Friends game with its extended FriendSDK runtime",
   "type": "module",
   "license": "SEE LICENSE IN LICENSE",

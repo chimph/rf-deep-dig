@@ -22,7 +22,7 @@ The focused source package omits upstream example games and contract tooling. `n
 
 ## Latest source-package verification
 
-The cleaned source package passed an offline clean dependency install, all 87 retained unit tests, runtime/game typechecks, game validation, and the wallet-connected build. Wallet preview, paged picker, offline save/migration, idle-refund and style-parity browser checks also passed in isolated Chromium sessions. The game README screenshot was refreshed from those UI checks. These are local automated results, not a claim of a hosted actual-wallet playthrough.
+The SDK v0.1.4 update was verified on September 30, 2026: all 90 retained unit tests, runtime/game typechecks, game validation, and the wallet-connected build passed. Wallet preview, paged picker, offline save/migration, idle-refund and style-parity browser checks passed in isolated Chromium sessions. The new bundle regression check confirms both preview JavaScript files exclude transaction and signing capabilities. Discovery tests cover bounded history pages starting at the canonical first Transfer block while preserving the eight-ID gallery. These are local automated results, not a claim of a hosted actual-wallet playthrough.
 
 ## Verification scope
 
@@ -41,7 +41,7 @@ The public release uses a fresh history with the approved `chimph` alias and Git
 
 Publication of this simulated preview is separate from a Vibeathon submission and from any future approved real-RF release. No live settlement, shared production ledger or owner-withdrawal enforcement is implemented.
 
-## Hosted preview verification
+## Earlier hosted preview verification
 
 Public URL: https://chimph.github.io/rf-deep-dig/ (HTTPS enforced).
 

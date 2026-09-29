@@ -49,4 +49,4 @@ npm run check:deep-dig:styles
 
 ## Runtime and credits
 
-Deep Dig uses FriendSDK v0.1.2 with local extensions for the Friend gallery, selected artwork reuse and remembered sound. The source includes the runtime required to reproduce those changes; the upstream SDK's demo games and contract development tools are not required for this preview. See [SDK integration](SDK.md), [license](LICENSE), [asset notices](NOTICE.md) and the [font license](games/deep-dig/fonts/Silkscreen-OFL.txt).
+Deep Dig uses FriendSDK v0.1.4 with local extensions for the Friend gallery, selected artwork reuse and remembered sound. The source includes the runtime required to reproduce those changes; the upstream SDK's demo games and contract development tools are not required for this preview. See [SDK integration](SDK.md), [license](LICENSE), [asset notices](NOTICE.md) and the [font license](games/deep-dig/fonts/Silkscreen-OFL.txt).
