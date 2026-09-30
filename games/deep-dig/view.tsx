@@ -245,12 +245,13 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
       {cells.map((cell, i) => {
         const cache = cell.revealed ? r?.caches.find(c => c.cell === i) : undefined;
         const pile = cache?.kind === 'ordinary' && !cache.opened ? sum(cache.loot) : 0n;
-        const showMine = mineResult && i === state.result!.hit;
-        const showSource = mineResult && cell.mystery && !cell.revealed && !showMine;
+        const hitMine = mineResult && i === state.result!.hit;
+        const showMine = mineResult && cell.mine;
+        const showOrb = mineResult && cell.mystery && !cell.mine;
         const reachable = r?.position !== null && r?.position !== undefined && cardinalNeighbors(r.position).includes(i);
-        const label = `${rowColumn(i, portrait)}: ${showMine ? 'mine hit' : showSource ? 'unopened resonance source, orb or mine' : cell.flagged ? 'flagged' : cell.revealed ? `${cell.adjacent} adjacent resonance sources${cell.mystery ? ', orb recovered' : pile ? `, ${money(pile)} RF on ground` : cache?.opened && sum(cache.loot) > 0n ? ', ground find collected' : ', empty ground'}` : 'covered'}${friendCell === i ? ', your Friend is here' : ''}`;
-        return <button key={i} ref={node => { buttons.current[i] = node; }} type="button" style={portrait ? { gridRow: i % WIDTH + 1, gridColumn: Math.floor(i / WIDTH) + 1 } : undefined} className={`tile ${cell.revealed ? 'revealed' : 'covered'} ${cell.flagged ? 'flagged' : ''} ${showMine ? 'mine-hit' : ''} ${showSource ? 'source-unopened' : ''} ${cell.revealed && cell.mystery && !showMine ? 'treasure-tile' : ''} ${friendCell === i ? 'friend-tile' : ''} ${reachable ? 'reachable' : ''} ${flagDirection && reachable && !cell.revealed ? 'flag-target' : ''} ${pile ? 'has-find' : ''}`}
-          data-testid={`cell-${i}`} data-state={showMine ? 'mine' : showSource ? 'source' : cell.flagged ? 'flagged' : cell.revealed ? 'revealed' : 'covered'}
+        const label = `${rowColumn(i, portrait)}: ${hitMine ? 'mine hit' : showMine ? 'uncovered mine' : showOrb ? cell.revealed ? 'orb recovered' : 'uncollected orb' : cell.flagged ? 'flagged' : cell.revealed ? `${cell.adjacent} adjacent resonance sources${cell.mystery ? ', orb recovered' : pile ? `, ${money(pile)} RF on ground` : cache?.opened && sum(cache.loot) > 0n ? ', ground find collected' : ', empty ground'}` : 'covered'}${friendCell === i ? ', your Friend is here' : ''}`;
+        return <button key={i} ref={node => { buttons.current[i] = node; }} type="button" style={portrait ? { gridRow: i % WIDTH + 1, gridColumn: Math.floor(i / WIDTH) + 1 } : undefined} className={`tile ${cell.revealed ? 'revealed' : 'covered'} ${cell.flagged ? 'flagged' : ''} ${hitMine ? 'mine-hit' : showMine ? 'mine-uncovered' : ''} ${showOrb || (cell.revealed && cell.mystery && !showMine) ? 'treasure-tile' : ''} ${friendCell === i ? 'friend-tile' : ''} ${reachable ? 'reachable' : ''} ${flagDirection && reachable && !cell.revealed ? 'flag-target' : ''} ${pile ? 'has-find' : ''}`}
+          data-testid={`cell-${i}`} data-state={showMine ? 'mine' : showOrb ? 'orb' : cell.flagged ? 'flagged' : cell.revealed ? 'revealed' : 'covered'}
           tabIndex={cursor === i ? 0 : -1} disabled={!r} aria-label={label} onFocus={() => setCursor(i)}
           onPointerDown={event => {
             suppressedClick.current = null;
@@ -268,7 +269,7 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
             act('dig', i);
           }}
           onContextMenu={e => { e.preventDefault(); const touching = !!press.current; cancelPress(); if (!isSuppressed(i)) act('flag', i); if (touching) suppressedClick.current = { cell: i, time: performance.now() }; }}>
-          {showMine ? <span className="mine-mark" aria-hidden><PixelIcon name="mine" /></span> : showSource ? <span className="source-mark" aria-hidden><PixelIcon name="source" /></span> : cell.flagged ? <span className="flag-mark" aria-hidden><PixelIcon name="flag" /></span> : cell.revealed ? <>
+          {showMine ? <span className="mine-mark" aria-hidden><PixelIcon name="mine" /></span> : showOrb ? <span className="treasure mystery" aria-hidden><PixelIcon name="orb" /></span> : cell.flagged ? <span className="flag-mark" aria-hidden><PixelIcon name="flag" /></span> : cell.revealed ? <>
             {!cell.mystery && cell.adjacent > 0 && <span className={`clue clue-${cell.adjacent}`} aria-hidden>{cell.adjacent}</span>}
             {pile > 0n && <span className="ground-find" aria-hidden><i><PixelIcon name="find" /></i><small>{money(pile)}</small></span>}
             {cell.mystery && cell.revealed && !cell.mine && <span className="treasure mystery" aria-hidden><PixelIcon name="orb" /></span>}
@@ -369,10 +370,10 @@ export default function DeepDig({ friendId, paused, sprites, sessionOnly = false
     {menu === 'reset' && <GameMenu title="Reset this local simulation?" onClose={() => setMenu('settings')} footer={<><button onClick={() => setMenu('settings')}>Cancel</button><button onClick={() => { reset(); setMenu(null); }}>{sessionOnly ? "Reset Friend & pool" : "Reset both Friends & pool"}</button></>}><p>{sessionOnly ? "Clear this session balance, board, pool and history. Your Friend starts with 20 sim RF; the mine starts with 1,000,000 simulated RF. Offline saves are unaffected." : "Clear both balances, the board, pool and history. Each sample starts with 20 sim RF; the mine starts with 1,000,000 simulated RF."}</p></GameMenu>}
     {state.result && (!mineResult) && <GameMenu title={state.result.kind === 'idle' ? 'Entry returned after inactivity.' : state.result.kind === 'extracted' ? 'Haul safely extracted.' : state.result.hit !== null ? 'Mine hit. Haul lost.' : 'Haul left behind.'} footer={<button className="rf-frame-primary" onClick={() => { setReveal(null); dispatch({ type: 'clearResult' }); }}>Return to camp</button>}>
       <div className="result-number">{money(state.result.amount)} <small>SIM RF {state.result.kind === 'idle' ? 'RETURNED' : state.result.kind === 'extracted' ? 'BANKED' : 'LOST'}</small></div>{state.result.kind === 'failed' && <div className="entry-loss result-entry-loss" data-testid="result-entry-loss">+ {money(state.result.stake ?? ENTRY)} RF entry</div>}<p>{state.result.reason}</p>{state.result.kind === 'idle' && <p data-testid="idle-discarded">{money(state.result.discarded ?? 0n)} sim RF unbanked haul returned to the shared pool.</p>}
-      {state.result.hit !== null && <><div className="result-board" role="img" aria-label="The red square is the mine you hit. Hollow rings mark unopened sources: orb or mine. Filled rings mark recovered orbs.">{state.result.cells.map((c, i) => {
-        const hit = i === state.result!.hit, unopened = c.mystery && !c.revealed && !hit;
-        return <span key={i} style={portrait ? { gridRow: i % WIDTH + 1, gridColumn: Math.floor(i / WIDTH) + 1 } : undefined} className={hit ? 'hit' : unopened ? 'source-unopened' : c.mystery ? 'jackpot' : c.revealed ? 'safe' : ''}>{hit ? <PixelIcon name="mine" /> : unopened ? <i className="source-mark" aria-hidden><PixelIcon name="source" /></i> : c.mystery ? <PixelIcon name="orb" /> : c.revealed && c.adjacent ? c.adjacent : ''}</span>;
-      })}</div><p className="result-legend"><i className="source-mark" aria-hidden><PixelIcon name="source" /></i> Unopened source · could be an orb or a mine.</p></>}
+      {state.result.hit !== null && <><div className="result-board" role="img" aria-label="Red mines and purple orbs show the actual source positions. The highlighted mine ended your run.">{state.result.cells.map((c, i) => {
+        const hit = i === state.result!.hit;
+        return <span key={i} style={portrait ? { gridRow: i % WIDTH + 1, gridColumn: Math.floor(i / WIDTH) + 1 } : undefined} className={hit ? 'hit' : c.mine ? 'bomb' : c.mystery ? 'jackpot' : c.revealed ? 'safe' : ''}>{c.mine ? <PixelIcon name="mine" /> : c.mystery ? <PixelIcon name="orb" /> : c.revealed && c.adjacent ? c.adjacent : ''}</span>;
+      })}</div><p className="result-legend">Red mines · purple orbs · highlighted mine hit.</p></>}
       <p>{state.result.kind === 'idle' ? 'Only the entry was refunded. The discarded haul was not added to your wallet.' : state.result.kind === 'failed' ? '100% of your unbanked haul is back in the shared pool for later runs to discover. Your banked balance is unchanged.' : 'Your unbanked haul is now safe in the selected Friend’s simulated balance.'}</p>
     </GameMenu>}
   </section>;

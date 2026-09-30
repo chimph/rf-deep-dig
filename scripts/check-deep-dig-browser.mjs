@@ -487,18 +487,20 @@ try {
     assert.equal(parseShownRF(await page.getByTestId('bag').innerText()),endangered,'entry is displayed separately, never added to the haul or charged again');
     assert.equal(await page.getByRole('button', { name: 'Enter mine 1 sim RF ↘', exact: true }).count(), 0, 'failed board is not replaced by camp controls');
     await page.keyboard.down('ArrowRight'); await unchanged(s);
-    const unopenedSources = s.result.cells.flatMap((c, i) => c.mystery && !c.revealed ? [i] : []);
     const recoveredOrbs = s.result.cells.filter(c => c.mystery && c.revealed && !c.mine).length;
-    assert.equal(await page.locator('.tile.mine-hit').count(), 1, 'only the mine actually hit is red');
+    assert.equal(await page.locator('.tile.mine-hit').count(), 1, 'only the mine actually hit gets the impact highlight');
+    assert.equal(await page.locator('.tile.mine-uncovered').count(), 4);
     assert.equal(await tile(mine).getAttribute('data-state'), 'mine');
     assert.equal(await page.locator('.tile.mine-hit.treasure-tile').count(), 0);
-    assert.equal(await page.locator('.tile .treasure.mystery').count(), recoveredOrbs);
-    const sourcesShown = await page.locator('.tile.source-unopened').evaluateAll(nodes => nodes.map(n => ({
+    assert.equal(await page.locator('.tile .treasure.mystery').count(), 5, 'all orbs are shown after losing');
+    assert.match(await page.locator('.board-counter').innerText(), new RegExp(`ORBS FOUND: ${recoveredOrbs}/5`), 'revealing the board does not collect remaining orbs');
+    assert.equal(await page.locator('.tile [data-icon="source"]').count(), 0);
+    const sourcesShown = await page.locator('.tile[data-state="mine"],.tile[data-state="orb"]').evaluateAll(nodes => nodes.map(n => ({
       cell: Number(n.dataset.testid.slice(5)), state: n.dataset.state,
-      label: n.getAttribute('aria-label').split(': ')[1], symbol: n.querySelector('[data-icon]')?.getAttribute('data-icon') ?? n.textContent,
-      mineMark: !!n.querySelector('.mine-mark'), flagMark: !!n.querySelector('.flag-mark')
+      label: n.getAttribute('aria-label').split(': ')[1].split(', your Friend')[0],
+      symbol: n.querySelector('[data-icon]')?.getAttribute('data-icon'), flagMark: !!n.querySelector('.flag-mark')
     })));
-    assert.deepEqual(sourcesShown, unopenedSources.map(cell => ({ cell, state: 'source', label: 'unopened resonance source, orb or mine', symbol: 'source', mineMark: false, flagMark: false })), 'all unopened sources look identical, including flags and both hidden outcomes');
+    assert.deepEqual(sourcesShown, s.result.cells.flatMap((c, cell) => c.mystery ? [{ cell, state: c.mine ? 'mine' : 'orb', label: cell === mine ? 'mine hit' : c.mine ? 'uncovered mine' : c.revealed ? 'orb recovered' : 'uncollected orb', symbol: c.mine ? 'mine' : 'orb', flagMark: false }] : []), 'every source shows its committed outcome, including flagged tiles');
     assert.equal(await page.locator('.board-legend,.title-pick').count(),0);
     await page.locator('.rf-game-frame').screenshot({ path: resolve(`work/deep-dig-checks/mine-reveal-${width}.png`), animations: 'allow' });
     await outcomeReady(); await page.keyboard.down('ArrowRight'); await page.keyboard.up('ArrowRight');

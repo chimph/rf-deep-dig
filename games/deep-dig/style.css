@@ -114,7 +114,9 @@
 .rf-game-frame .reveal-continue:hover:not(:disabled){background:transparent;color:#ffe6ad}
 .rf-game-frame .reveal-continue:disabled{opacity:1;cursor:default}
 .lost-haul strong{color:#ffab91}
-/* Unopened sources keep their ambiguous resonance after a mine ends the run. */
+/* Reveal actual source contents only after a mine ends the run. */
+.rf-game-frame .tile.mine-uncovered{background:#39292d;border-color:#a36059;box-shadow:none}
+.result-board>.bomb>.pixel-icon{width:1em;height:1em;color:var(--pixel-mine)}
 .rf-game-frame .tile.source-unopened{background:#263f4a;border-color:#658492;box-shadow:none}
 .source-mark{display:inline-block;position:relative;width:1em;height:1em;color:transparent;font-style:normal;line-height:1;vertical-align:-.12em}
 .source-mark::before,.source-mark::after{content:'';position:absolute;border-radius:50%;border-style:solid;box-sizing:border-box}
